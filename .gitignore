@@ -1,0 +1,6 @@
+
+.mxproject
+*.o
+*.o
+.MDK-ARM\STM32F103C8x
+*.d

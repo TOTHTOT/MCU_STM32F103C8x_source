@@ -1,11 +1,3 @@
-/*
- * @Description: 
- * @Author: TOTHTOT
- * @Date: 2022-10-03 16:37:03
- * @LastEditTime: 2022-10-03 16:39:22
- * @LastEditors: TOTHTOT
- * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\Inc\gpio.h
- */
 /**
   ******************************************************************************
   * File Name          : gpio.h

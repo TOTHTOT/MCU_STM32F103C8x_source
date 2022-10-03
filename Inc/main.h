@@ -48,6 +48,10 @@
 
 #define PA7_Pin GPIO_PIN_7
 #define PA7_GPIO_Port GPIOA
+#define SCL_Pin GPIO_PIN_6
+#define SCL_GPIO_Port GPIOB
+#define SDA_Pin GPIO_PIN_7
+#define SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

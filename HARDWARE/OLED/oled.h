@@ -1,15 +1,15 @@
 /*
  * @Author: TOTHTOT
  * @Date: 2022-03-13 14:07:40
- * @LastEditTime: 2022-05-01 10:17:36
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-10-03 17:10:23
+ * @LastEditors: TOTHTOT
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \USERe:\Learn\stm32\实例\F103C8T6冷暖杯\HARDWARE\OLED\oled.h
+ * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\OLED\oled.h
  */
 
 #ifndef __OLED_H
 #define __OLED_H			  	 
-#include "sys.h"
+#include "gpio.h"
 #include "stdlib.h"	    	
 #define OLED_MODE 0
 #define SIZE 8
@@ -22,45 +22,19 @@
 #define Y_WIDTH 	64	    						  
 //-----------------OLED IIC端口定义----------------
 
-#define OLED_SCLK_Clr() GPIO_ResetBits(GPIOA, GPIO_Pin_5) // SCL
-#define OLED_SCLK_Set() GPIO_SetBits(GPIOA, GPIO_Pin_5)
+#define OLED_SCLK_Clr() HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6,GPIO_PIN_RESET) // SCL
+#define OLED_SCLK_Set() HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET)
 
-#define OLED_SDIN_Clr() GPIO_ResetBits(GPIOA, GPIO_Pin_4) // SDA
-#define OLED_SDIN_Set() GPIO_SetBits(GPIOA, GPIO_Pin_4)
+#define OLED_SDIN_Clr() HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET) // SDA
+#define OLED_SDIN_Set() HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET)
 
 #define OLED_CMD  0	//写命令
 #define OLED_DATA 1	//写数据
 
-typedef enum
-{
-    E_Car_Stop,
-    E_Car_Staright,
-    E_Car_Left,
-    E_Car_Right,
-    E_Car_Back,
-    E_Car_Left_30,
-    E_Car_Right_30,
-    E_Car_Left_60,
-    E_Car_Right_60
-}_Car_Run_Status_t;
+#define u8 uint8_t
+#define u32 uint32_t
 
-typedef struct
-{
-    u8 struct_flag;                       //该位用于告诉OLED更新显示
-    _Car_Run_Status_t run_status;         //该位用于表示小车运行状态
-    u8 Speed;                             //该位用于表示小车速度
-    u8 goose;                             //该位用于表示药物是否装载
-    u8 room;                              //该位用于表示要去往的病房
-    u16 time_sec;                         //该位用于表示时间秒
-    u8 time_min;                          //该位用于表示时间分
-    u8 car_goback_en;                     //该位用于表示可以回病房
-    u8 pid_en;                            //该位用于表示PID控制使能
-    u8 LoR;                               //该位用于表示转向
-    u8 Bluetooth;                         //该位用于表示蓝牙连接成功
-    u8 car_goback_zhongOryuan_duang_flag; //该位用于表示小车回病房标志中端和远端的返回标志,为1说明中端返回, 2说明远端返回
-} _Car_Status;
 
-extern _Car_Status car_status;
 
 //OLED控制用函数
 void OLED_WR_Byte(unsigned dat,unsigned cmd);  

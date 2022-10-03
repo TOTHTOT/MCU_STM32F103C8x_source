@@ -38,7 +38,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
-#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -50,6 +49,7 @@
 #include "led.h"
 #include "delay.h"
 #include "dht11.h"
+#include "oled.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -103,7 +103,6 @@ int main(void)
   MX_TIM2_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
-  MX_I2C1_Init();
   MX_USART3_UART_Init();
 
   /* Initialize interrupts */
@@ -116,7 +115,9 @@ int main(void)
     DHT11_Init();
 	userInit();
 	gizwitsInit();
+    OLED_Init();
 	GIZWITS_LOG("MCU Init Success \n");
+    main_page();
   /* USER CODE END 2 */
 
   /* Infinite loop */

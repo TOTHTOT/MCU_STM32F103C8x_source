@@ -20,7 +20,6 @@
 #include "stdlib.h"
 #include "oledfont.h"  	 
 #include "delay.h"
-#include "timer.h"
 
 u8 OLED_x = 35, OLED_y = 0;
 //OLED的显存
@@ -30,7 +29,7 @@ u8 OLED_x = 35, OLED_y = 0;
 //[2]0 1 2 3 ... 127	
 //[3]0 1 2 3 ... 127	
 //[4]0 1 2 3 ... 127	
-//[5]0 1 2 3 ... 127	
+//[5]0 1 2 3 ... 127	 
 //[6]0 1 2 3 ... 127	
 //[7]0 1 2 3 ... 127 			   
 /**********************************************
@@ -323,15 +322,15 @@ void OLED_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); //使能A端口时钟
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;  //推挽输出
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //速度50MHz
-	GPIO_Init(GPIOA, &GPIO_InitStructure);			  //初始化GPIOA 12 11
-	GPIO_SetBits(GPIOA, GPIO_Pin_5 | GPIO_Pin_4);
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+	GPIO_InitStructure.Pin = GPIO_PIN_7 | GPIO_PIN_6;
+	GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;  //推挽输出
+	GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH; //速度50MHz
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);			  //初始化GPIOA 12 11
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7 | GPIO_PIN_6, GPIO_PIN_SET);
 
 	// 不注释RTOS报错
-	delay_xms(200);
+	delay_ms(200);
 	OLED_WR_Byte(0xAE,OLED_CMD);//--display off
 	OLED_WR_Byte(0x00,OLED_CMD);//---set low column address
 	OLED_WR_Byte(0x10,OLED_CMD);//---set high column address
@@ -381,12 +380,12 @@ void main_page(void)
 //显示时间
 void main_page_data()
 {
-	OLED_ShowNum(40, 2, TDATATIME.year,4, 16);	OLED_ShowCHinese(72, 2, 12);		//年
-	OLED_ShowNum(0, 4, TDATATIME.month,2, 16);	OLED_ShowCHinese(20, 4, 13);		//月
-	OLED_ShowNum(40, 4, TDATATIME.day,2, 16);	OLED_ShowCHinese(60, 4, 14);		//日
-	OLED_ShowNum(0, 6, TDATATIME.hour,2, 16);	OLED_ShowCHinese(20, 6, 17);		//时
-	OLED_ShowNum(40, 6, TDATATIME.minute,2, 16);OLED_ShowCHinese(60, 6, 16);		//分
-	OLED_ShowNum(80, 6, TDATATIME.second,2, 16);OLED_ShowCHinese(100, 6, 15);		//秒
+	// OLED_ShowNum(40, 2, TDATATIME.year,4, 16);	OLED_ShowCHinese(72, 2, 12);		//年
+	// OLED_ShowNum(0, 4, TDATATIME.month,2, 16);	OLED_ShowCHinese(20, 4, 13);		//月
+	// OLED_ShowNum(40, 4, TDATATIME.day,2, 16);	OLED_ShowCHinese(60, 4, 14);		//日
+	// OLED_ShowNum(0, 6, TDATATIME.hour,2, 16);	OLED_ShowCHinese(20, 6, 17);		//时
+	// OLED_ShowNum(40, 6, TDATATIME.minute,2, 16);OLED_ShowCHinese(60, 6, 16);		//分
+	// OLED_ShowNum(80, 6, TDATATIME.second,2, 16);OLED_ShowCHinese(100, 6, 15);		//秒
 	
 //	OLED_ShowChar(48, 2, TDATATIME.month,8);
 //	OLED_ShowChar(56, 2, TDATATIME.day,8);
