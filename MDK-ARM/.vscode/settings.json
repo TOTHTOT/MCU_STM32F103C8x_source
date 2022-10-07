@@ -5,6 +5,7 @@
         "dht11.h": "c",
         "delay.h": "c",
         "gizwits_product.h": "c",
-        "gizwits_protocol.h": "c"
+        "gizwits_protocol.h": "c",
+        "stdio.h": "c"
     }
 }

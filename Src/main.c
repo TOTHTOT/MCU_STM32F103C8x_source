@@ -51,6 +51,8 @@
 #include "delay.h"
 #include "dht11.h"
 #include "oled.h"
+#include "hongwai.h"
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -117,7 +119,7 @@ int main(void)
 	userInit();
 	gizwitsInit();
 	GIZWITS_LOG("MCU Init Success \n");
-    DHT11_Init();
+    //DHT11_Init();
     OLED_Init();
     main_page();
   /* USER CODE END 2 */
@@ -132,6 +134,7 @@ int main(void)
     if(loop_times%100 == 0)
     {
         LED0_TOGGLE;    //每500ms led 闪烁一次
+        u3_printf("11%d\r\n", 1);
         DHT11_Read_Data(&currentDataPoint.valuewendu, &currentDataPoint.valueshidu);
         gizwitsHandle((dataPoint_t *)&currentDataPoint);    //数据上报
         printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);

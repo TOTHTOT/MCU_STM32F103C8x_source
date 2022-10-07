@@ -44,3 +44,4 @@ stm32f103c8x\main.o: ..\SYSTEM\delay\delay.h
 stm32f103c8x\main.o: ..\SYSTEM\sys\sys.h
 stm32f103c8x\main.o: ..\HARDWARE\DHT11\dht11.h
 stm32f103c8x\main.o: ..\HARDWARE\OLED\oled.h
+stm32f103c8x\main.o: ..\HARDWARE\HONGWAI\hongwai.h
