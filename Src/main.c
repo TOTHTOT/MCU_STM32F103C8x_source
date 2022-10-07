@@ -38,6 +38,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -104,6 +105,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
+  MX_I2C1_Init();
 
   /* Initialize interrupts */
   MX_NVIC_Init();
@@ -114,9 +116,9 @@ int main(void)
 	uartInit();
 	userInit();
 	gizwitsInit();
-    OLED_Init();
 	GIZWITS_LOG("MCU Init Success \n");
     DHT11_Init();
+    OLED_Init();
     main_page();
   /* USER CODE END 2 */
 
@@ -129,7 +131,7 @@ int main(void)
   /* USER CODE BEGIN 3 */
     if(loop_times%100 == 0)
     {
-        //LED0_TOGGLE;    //每500ms led 闪烁一次
+        LED0_TOGGLE;    //每500ms led 闪烁一次
         DHT11_Read_Data(&currentDataPoint.valuewendu, &currentDataPoint.valueshidu);
         gizwitsHandle((dataPoint_t *)&currentDataPoint);    //数据上报
         printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);

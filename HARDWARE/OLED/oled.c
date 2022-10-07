@@ -21,6 +21,9 @@
 #include "oledfont.h"  	 
 #include "delay.h"
 #include "gizwits_protocol.h"
+#include "i2c.h"
+
+#define OLED_X_POS 132
 
 u8 OLED_x = 35, OLED_y = 0;
 //OLED的显存
@@ -112,28 +115,31 @@ void Write_IIC_Byte(unsigned char IIC_Byte)
 **********************************************/
 void Write_IIC_Command(unsigned char IIC_Command)
 {
-   IIC_Start();
-   Write_IIC_Byte(0x78);            //Slave address,SA0=0
-	IIC_Wait_Ack();	
-   Write_IIC_Byte(0x00);			//write command
-	IIC_Wait_Ack();	
-   Write_IIC_Byte(IIC_Command); 
-	IIC_Wait_Ack();	
-   IIC_Stop();
+//     IIC_Start();
+//    Write_IIC_Byte(0x78);            //Slave address,SA0=0
+// 	IIC_Wait_Ack();	
+//    Write_IIC_Byte(0x00);			//write command
+// 	IIC_Wait_Ack();	
+//    Write_IIC_Byte(IIC_Command); 
+// 	IIC_Wait_Ack();	
+//    IIC_Stop();
+   HAL_I2C_Mem_Write(&hi2c1 ,0x78,0x00,I2C_MEMADD_SIZE_8BIT,&IIC_Command,1,0x100);
 }
 /**********************************************
-// IIC Write Data
+// IIC Write Data 
+
 **********************************************/
 void Write_IIC_Data(unsigned char IIC_Data)
 {
-   IIC_Start();
-   Write_IIC_Byte(0x78);			//D/C#=0; R/W#=0
-	IIC_Wait_Ack();	
-   Write_IIC_Byte(0x40);			//write data
-	IIC_Wait_Ack();	
-   Write_IIC_Byte(IIC_Data);
-	IIC_Wait_Ack();	
-   IIC_Stop();
+//     IIC_Start();
+//    Write_IIC_Byte(0x78);			//D/C#=0; R/W#=0
+// 	IIC_Wait_Ack();	
+//    Write_IIC_Byte(0x40);			//write data
+// 	IIC_Wait_Ack();	
+//    Write_IIC_Byte(IIC_Data);
+// 	IIC_Wait_Ack();	
+//    IIC_Stop();
+   HAL_I2C_Mem_Write(&hi2c1 ,0x78,0x40,I2C_MEMADD_SIZE_8BIT,&IIC_Data,1,0x100);
 }
 void OLED_WR_Byte(unsigned dat,unsigned cmd)
 {
@@ -163,7 +169,7 @@ void fill_picture(unsigned char fill_Data)
 		OLED_WR_Byte(0xb0+m,0);		//page0-page1
 		OLED_WR_Byte(0x00,0);		//low column start address
 		OLED_WR_Byte(0x10,0);		//high column start address
-		for(n=0;n<128;n++)
+		for(n=0;n<OLED_X_POS;n++)
 			{
 				OLED_WR_Byte(fill_Data,1);
 			}
@@ -200,7 +206,7 @@ void OLED_Clear(void)
 		OLED_WR_Byte (0xb0+i,OLED_CMD);    //设置页地址（0~7）
 		OLED_WR_Byte (0x00,OLED_CMD);      //设置显示位置—列低地址
 		OLED_WR_Byte (0x10,OLED_CMD);      //设置显示位置—列高地址   
-		for(n=0;n<128;n++)OLED_WR_Byte(0,OLED_DATA); 
+		for(n=0;n<OLED_X_POS;n++)OLED_WR_Byte(0,OLED_DATA); 
 	} //更新显示
 }
 void OLED_On(void)  
@@ -211,7 +217,7 @@ void OLED_On(void)
 		OLED_WR_Byte (0xb0+i,OLED_CMD);    //设置页地址（0~7）
 		OLED_WR_Byte (0x00,OLED_CMD);      //设置显示位置—列低地址
 		OLED_WR_Byte (0x10,OLED_CMD);      //设置显示位置—列高地址   
-		for(n=0;n<128;n++)OLED_WR_Byte(1,OLED_DATA); 
+		for(n=0;n<OLED_X_POS;n++)OLED_WR_Byte(1,OLED_DATA); 
 	} //更新显示
 }
 //在指定位置显示一个字符,包括部分字符
@@ -221,7 +227,10 @@ void OLED_On(void)
 //size:选择字体 16/12 
 void OLED_ShowChar(u8 x,u8 y,u8 chr,u8 Char_Size)
 {      	
-	unsigned char c=0,i=0;	
+	unsigned char c=0,i=0;
+    #if OLED_X_POS==132
+    x = x+4;//1.3 寸OLED加4, 且所有的128该位OLED_X_POS
+    #endif
 		c=chr-' ';//得到偏移后的值			
 		if(x>Max_Column-1){x=0;y=y+2;}
 		if(Char_Size ==16)
@@ -321,17 +330,17 @@ void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned 
 //初始化SSD1306					    
 void OLED_Init(void)
 {
-	GPIO_InitTypeDef GPIO_InitStructure;
+	// GPIO_InitTypeDef GPIO_InitStructure;
 
-    __HAL_RCC_GPIOB_CLK_ENABLE();
-	GPIO_InitStructure.Pin = GPIO_PIN_7 | GPIO_PIN_6;
-	GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;  //推挽输出
-	GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH; //速度50MHz
-	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);			  //初始化GPIOA 12 11
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7 | GPIO_PIN_6, GPIO_PIN_SET);
+    // __HAL_RCC_GPIOB_CLK_ENABLE();
+	// GPIO_InitStructure.Pin = GPIO_PIN_7 | GPIO_PIN_6;
+	// GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;  //推挽输出
+	// GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH; //速度50MHz
+	// HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);			  //初始化GPIOA 12 11
+	// HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7 | GPIO_PIN_6, GPIO_PIN_SET);
 
 	// 不注释RTOS报错
-	delay_ms(200);
+	delay_ms(100);
 	OLED_WR_Byte(0xAE,OLED_CMD);//--display off
 	OLED_WR_Byte(0x00,OLED_CMD);//---set low column address
 	OLED_WR_Byte(0x10,OLED_CMD);//---set high column address
@@ -366,6 +375,7 @@ void OLED_Init(void)
 	OLED_WR_Byte(0x14,OLED_CMD);//
 	
 	OLED_WR_Byte(0xAF,OLED_CMD);//--turn on oled panel
+    OLED_Clear();
 } 
 
 /* 主页面显示,名字和时间*/
@@ -376,15 +386,15 @@ void main_page(void)
     OLED_ShowString(64, 0, "SD:", 16);
     OLED_ShowString(0, 2, "MB:", 16);
     OLED_ShowString(64, 2, "FS:", 16);
-    OLED_ShowString(64, 2, "MS:", 16);
+    OLED_ShowString(00, 4, "MS:", 16);
 }
 extern dataPoint_t currentDataPoint;
 
 void main_page_data()
 {
-    OLED_ShowNum(45, 0, currentDataPoint.valuewendu, 3, 16);
-    OLED_ShowNum(45+64, 0, currentDataPoint.valueshidu, 3, 16);
-    OLED_ShowNum(45, 2, currentDataPoint.valuewemdu_kongzhi, 3, 16);
-    OLED_ShowNum(45+64, 2, currentDataPoint.valuewindspeed, 3, 16);
-    OLED_ShowNum(45, 4, currentDataPoint.valuewindspeed, 3, 16);
+    OLED_ShowNum(25, 0, currentDataPoint.valuewendu, 3, 16);
+    OLED_ShowNum(25+64, 0, currentDataPoint.valueshidu, 3, 16);
+    OLED_ShowNum(25, 2, currentDataPoint.valuewemdu_kongzhi, 3, 16);
+    OLED_ShowNum(25+64, 2, currentDataPoint.valuewindspeed, 3, 16);
+    OLED_ShowNum(25, 4, currentDataPoint.valuewindspeed, 3, 16);
 }
