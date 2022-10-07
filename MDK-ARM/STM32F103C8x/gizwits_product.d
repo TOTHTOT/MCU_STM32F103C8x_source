@@ -34,3 +34,5 @@ stm32f103c8x\gizwits_product.o: E:\Keil Programma\ARM\ARMCC\Bin\..\include\stdbo
 stm32f103c8x\gizwits_product.o: E:\Keil Programma\ARM\ARMCC\Bin\..\include\stdlib.h
 stm32f103c8x\gizwits_product.o: ..\Utils\common.h
 stm32f103c8x\gizwits_product.o: E:\Keil Programma\ARM\ARMCC\Bin\..\include\ctype.h
+stm32f103c8x\gizwits_product.o: ..\HARDWARE\LED\led.h
+stm32f103c8x\gizwits_product.o: ../Inc/gpio.h

@@ -19,6 +19,7 @@
 #include "hal_key.h"
 #include "gizwits_product.h"
 #include "common.h"
+#include "led.h"
 
 static uint32_t timerMsCount;
 uint8_t aRxBuffer;
@@ -30,6 +31,7 @@ extern keysTypedef_t keys;
 extern TIM_HandleTypeDef htim2;
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
+extern UART_HandleTypeDef huart3;
 
 /**@} */
 /**@name Gizwits User Interface
@@ -192,13 +194,13 @@ void userInit(void)
     memset((uint8_t*)&currentDataPoint, 0, sizeof(dataPoint_t));
     
     /** Warning !!! DataPoint Variables Init , Must Within The Data Range **/ 
-    /*
-      currentDataPoint.valuewindspeed = ;
-      currentDataPoint.valuework_mod = ;
-      currentDataPoint.valuewendu = ;
-      currentDataPoint.valuewemdu_kongzhi = ;
-      currentDataPoint.valueshidu = ;
-    */
+    
+      currentDataPoint.valuewindspeed = 0;
+      currentDataPoint.valuework_mod = 0;
+      currentDataPoint.valuewendu = 0;
+      currentDataPoint.valuewemdu_kongzhi = 25;
+      currentDataPoint.valueshidu = 0;
+   
 
 }
 
@@ -291,10 +293,23 @@ void timerInit(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef*UartHandle)  
 {  
     if(UartHandle->Instance == USART2)  
-    {  
+    {  LED0_TOGGLE;
+    printf("size:%d", UartHandle->RxXferSize);
 				gizPutData((uint8_t *)&aRxBuffer, 1);
 
         HAL_UART_Receive_IT(&huart2, (uint8_t *)&aRxBuffer, 1);//开启下一次接收中断  
+    }
+    else if(UartHandle->Instance == USART3)
+    {
+        LED0_TOGGLE;
+        printf("size:%d", UartHandle->RxXferSize);
+        HAL_UART_Receive_IT(&huart3, UartHandle->pRxBuffPtr, 1);//开启下一次接收中断  
+    }  
+    else if(UartHandle->Instance == USART1)
+    {
+        LED0_TOGGLE;
+        printf("size:%d", UartHandle->RxXferSize);
+        HAL_UART_Receive_IT(&huart1, UartHandle->pRxBuffPtr, 1);//开启下一次接收中断  
     }  
 }  
 
@@ -307,7 +322,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef*UartHandle)
 */
 void uartInit(void)
 {
+    huart1.pRxBuffPtr = (uint8_t *)malloc(200);
+    huart3.pRxBuffPtr = (uint8_t *)malloc(200);
+	HAL_UART_Receive_IT(&huart1, huart1.pRxBuffPtr, 1);//开启下一次接收中断  
 	HAL_UART_Receive_IT(&huart2, (uint8_t *)&aRxBuffer, 1);//开启下一次接收中断  
+	HAL_UART_Receive_IT(&huart3, huart3.pRxBuffPtr, 1);//开启下一次接收中断  
 }
 
 /**

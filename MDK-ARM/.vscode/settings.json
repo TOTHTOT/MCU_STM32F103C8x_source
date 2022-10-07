@@ -3,6 +3,8 @@
         "led.h": "c",
         "gpio.h": "c",
         "dht11.h": "c",
-        "delay.h": "c"
+        "delay.h": "c",
+        "gizwits_product.h": "c",
+        "gizwits_protocol.h": "c"
     }
 }

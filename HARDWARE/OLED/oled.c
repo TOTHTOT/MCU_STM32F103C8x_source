@@ -20,6 +20,7 @@
 #include "stdlib.h"
 #include "oledfont.h"  	 
 #include "delay.h"
+#include "gizwits_protocol.h"
 
 u8 OLED_x = 35, OLED_y = 0;
 //OLED的显存
@@ -371,25 +372,19 @@ void OLED_Init(void)
 void main_page(void)
 {
 	OLED_Clear();
-	OLED_ShowCHinese(0, 0, 0);		//姓
-	OLED_ShowCHinese(16, 0, 1);		//名
-	OLED_ShowCHinese(0, 2, 2);		//时
-	OLED_ShowCHinese(16, 2, 3);		//间
+    OLED_ShowString(0, 0, "WD:", 16);
+    OLED_ShowString(64, 0, "SD:", 16);
+    OLED_ShowString(0, 2, "MB:", 16);
+    OLED_ShowString(64, 2, "FS:", 16);
+    OLED_ShowString(64, 2, "MS:", 16);
 }
+extern dataPoint_t currentDataPoint;
 
-//显示时间
 void main_page_data()
 {
-	// OLED_ShowNum(40, 2, TDATATIME.year,4, 16);	OLED_ShowCHinese(72, 2, 12);		//年
-	// OLED_ShowNum(0, 4, TDATATIME.month,2, 16);	OLED_ShowCHinese(20, 4, 13);		//月
-	// OLED_ShowNum(40, 4, TDATATIME.day,2, 16);	OLED_ShowCHinese(60, 4, 14);		//日
-	// OLED_ShowNum(0, 6, TDATATIME.hour,2, 16);	OLED_ShowCHinese(20, 6, 17);		//时
-	// OLED_ShowNum(40, 6, TDATATIME.minute,2, 16);OLED_ShowCHinese(60, 6, 16);		//分
-	// OLED_ShowNum(80, 6, TDATATIME.second,2, 16);OLED_ShowCHinese(100, 6, 15);		//秒
-	
-//	OLED_ShowChar(48, 2, TDATATIME.month,8);
-//	OLED_ShowChar(56, 2, TDATATIME.day,8);
-//	OLED_ShowChar(64, 2, TDATATIME.hour,8);
-//	OLED_ShowChar(72, 2, TDATATIME.minute,8);
-//	OLED_ShowChar(80, 2, TDATATIME.second,8);
+    OLED_ShowNum(45, 0, currentDataPoint.valuewendu, 3, 16);
+    OLED_ShowNum(45+64, 0, currentDataPoint.valueshidu, 3, 16);
+    OLED_ShowNum(45, 2, currentDataPoint.valuewemdu_kongzhi, 3, 16);
+    OLED_ShowNum(45+64, 2, currentDataPoint.valuewindspeed, 3, 16);
+    OLED_ShowNum(45, 4, currentDataPoint.valuewindspeed, 3, 16);
 }

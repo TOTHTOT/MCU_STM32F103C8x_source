@@ -112,11 +112,11 @@ int main(void)
     delay_init(72);
 	timerInit();
 	uartInit();
-    DHT11_Init();
 	userInit();
 	gizwitsInit();
     OLED_Init();
 	GIZWITS_LOG("MCU Init Success \n");
+    DHT11_Init();
     main_page();
   /* USER CODE END 2 */
 
@@ -129,12 +129,14 @@ int main(void)
   /* USER CODE BEGIN 3 */
     if(loop_times%100 == 0)
     {
-        LED0_TOGGLE;    //每500ms led 闪烁一次
-        DHT11_Read_Data(&t, &h);
-        printf("led, 温度:%d,湿度:%d\r\n", t, h);
+        //LED0_TOGGLE;    //每500ms led 闪烁一次
+        DHT11_Read_Data(&currentDataPoint.valuewendu, &currentDataPoint.valueshidu);
+        gizwitsHandle((dataPoint_t *)&currentDataPoint);    //数据上报
+        printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);
+        main_page_data();
     }
 		userHandle();
-		gizwitsHandle((dataPoint_t *)&currentDataPoint);
+		
         loop_times++;
         delay_ms(5);
   }
@@ -198,7 +200,7 @@ static void MX_NVIC_Init(void)
   HAL_NVIC_SetPriority(TIM2_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(TIM2_IRQn);
   /* USART2_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(USART2_IRQn, 3, 0);
   HAL_NVIC_EnableIRQ(USART2_IRQn);
 }
 
