@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: TOTHTOT
  * @Date: 2022-10-03 16:05:51
- * @LastEditTime: 2022-10-03 16:49:10
+ * @LastEditTime: 2022-10-08 11:39:12
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\DHT11\dht11.c
  */
@@ -108,7 +108,7 @@ int DHT11_Read_Byte(void)
 // temp:温度值(范围:0~50°)
 // humi:湿度值(范围:20%~90%)
 //返回值：0,正常;1,读取失败
-int DHT11_Read_Data(int *temp, int *humi)
+int DHT11_Read_Data(uint32_t *temp, uint32_t *humi)
 {
 	int buf[5];
 	int i;

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: TOTHTOT
  * @Date: 2022-10-03 16:05:51
- * @LastEditTime: 2022-10-03 16:48:09
+ * @LastEditTime: 2022-10-08 11:39:06
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\DHT11\dht11.h
  */
@@ -20,7 +20,7 @@
 					
 void DHT11_IO_OUT(void);
 int DHT11_Check(void);
-int DHT11_Read_Data(int *temp,int *humi);
+int DHT11_Read_Data(uint32_t *temp,uint32_t *humi);
 void DHT11_Init(void);
 #endif
 

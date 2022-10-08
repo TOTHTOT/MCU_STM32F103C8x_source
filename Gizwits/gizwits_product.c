@@ -300,7 +300,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef*UartHandle)
     }
     else if(UartHandle->Instance == USART3)
     {
-        
+        printf("%x", UartHandle->pRxBuffPtr);
         HAL_UART_Receive_IT(&huart3, UartHandle->pRxBuffPtr, 1);//开启下一次接收中断  
     }  
     else if(UartHandle->Instance == USART1)

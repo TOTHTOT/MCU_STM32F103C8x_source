@@ -48,6 +48,26 @@
 
 #define PA7_Pin GPIO_PIN_7
 #define PA7_GPIO_Port GPIOA
+#define learn_bt_Pin GPIO_PIN_12
+#define learn_bt_GPIO_Port GPIOB
+#define learn_bt_EXTI_IRQn EXTI15_10_IRQn
+#define wd_down_Pin GPIO_PIN_13
+#define wd_down_GPIO_Port GPIOB
+#define wd_down_EXTI_IRQn EXTI15_10_IRQn
+#define ch_mod_Pin GPIO_PIN_14
+#define ch_mod_GPIO_Port GPIOB
+#define ch_mod_EXTI_IRQn EXTI15_10_IRQn
+#define ch_fs_Pin GPIO_PIN_15
+#define ch_fs_GPIO_Port GPIOB
+#define ch_fs_EXTI_IRQn EXTI15_10_IRQn
+#define wd_up_Pin GPIO_PIN_8
+#define wd_up_GPIO_Port GPIOA
+#define ESP_IO0_Pin GPIO_PIN_3
+#define ESP_IO0_GPIO_Port GPIOB
+#define ESP_IO2_Pin GPIO_PIN_4
+#define ESP_IO2_GPIO_Port GPIOB
+#define ESP_RST_Pin GPIO_PIN_5
+#define ESP_RST_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
