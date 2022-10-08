@@ -1,20 +1,11 @@
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//  文 件 名   : main.c
-//  版 本 号   : v2.0
-//  作    者   : Evk123
-//  生成日期   : 2014-0101
-//  最近修改   : 
-//  功能描述   : 0.69寸OLED 接口演示例程(STM32F103ZE系列IIC)
-//              说明: 
-//              ----------------------------------------------------------------
-//              GND   电源地
-//              VCC   接5V或3.3v电源
-//              SCL   接PD6（SCL）
-//              SDA   接PD7（SDA）            
-//              ----------------------------------------------------------------
-//All rights reserved
-//////////////////////////////////////////////////////////////////////////////////?
+/*
+ * @Description: OLED显示
+ * @Author: TOTHTOT
+ * @Date: 2022-10-07 20:33:56
+ * @LastEditTime: 2022-10-08 20:18:06
+ * @LastEditors: TOTHTOT
+ * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\OLED\oled.c
+ */
 
 #include "oled.h"
 #include "stdlib.h"
@@ -22,6 +13,7 @@
 #include "delay.h"
 #include "gizwits_protocol.h"
 #include "i2c.h"
+#include "hongwai.h"
 
 #define OLED_X_POS 132
 
@@ -397,4 +389,12 @@ void main_page_data()
     OLED_ShowNum(25, 2, currentDataPoint.valuewemdu_kongzhi, 3, 16);
     OLED_ShowNum(25+64, 2, currentDataPoint.valuewindspeed, 3, 16);
     OLED_ShowNum(25, 4, currentDataPoint.valuewindspeed, 3, 16);
+    if(run_states==learn_mode)
+    {
+        OLED_ShowString(0, 6, "Learning...", 16);
+    }
+    else
+    {
+        OLED_ShowString(0, 6, "           ", 16);
+    }
 }

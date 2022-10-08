@@ -2,7 +2,7 @@
  * @Description:
  * @Author: TOTHTOT
  * @Date: 2022-10-07 20:35:33
- * @LastEditTime: 2022-10-08 12:24:34
+ * @LastEditTime: 2022-10-08 19:46:10
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\HONGWAI\hongwai.c
  */
@@ -11,8 +11,32 @@
 #include "stdio.h"
 #include "string.h"
 
-enum State_handle run_states;
-run_states = default_mode;
+enum State_handle run_states = default_mode;
+
+
+// 内部学码
+uint8_t inside_learn_code[7][8]={
+    {0x68, 0x08, 0x00, 0xFF, 0x10, 0x00, 0x0F, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x10, 0x01, 0x10, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x10, 0x02, 0x11, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x10, 0x03, 0x12, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x10, 0x04, 0x13, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x10, 0x05, 0x14, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x10, 0x06, 0x15, 0x16}, 
+};
+// 退出内部学码
+uint8_t inside_exit_learn_code[] = {0x68, 0x07, 0x00, 0xFF, 0x11, 0x10, 0x16};
+
+// 内部学发码
+uint8_t inside_send_code[7][8] ={
+    {0x68, 0x08, 0x00, 0xFF, 0x12, 0x00, 0x11, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x12, 0x01, 0x12, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x12, 0x02, 0x13, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x12, 0x03, 0x14, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x12, 0x04, 0x15, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x12, 0x05, 0x16, 0x16}, 
+    {0x68, 0x08, 0x00, 0xFF, 0x12, 0x06, 0x17, 0x16}, 
+};
 /**
  * @name: u3_printf
  * @msg: 自定义printf
@@ -22,16 +46,14 @@ run_states = default_mode;
 void u3_printf(char *format, ...)
 {
     char buffer[100];
+    uint16_t len; 
     uint16_t i = 0;
     va_list arg_ptr;
     va_start(arg_ptr, format);
     vsnprintf(buffer, 100, format, arg_ptr);
-    while (i < 99 && buffer[i])
-    {
-        HAL_UART_Transmit(&huart3, (uint8_t *)&buffer[i], 1, 0xFFFF);
-        i++;
-    }
+    len = vsnprintf((char *)buffer, sizeof(buffer), (char *)format, arg_ptr);
     va_end(arg_ptr);
+    HAL_UART_Transmit(&huart3, (uint8_t *)&buffer[i], len, 0xFFFF);
 }
 
 /**
@@ -97,7 +119,15 @@ uint16_t IR_Send_Pack(uint8_t *data, uint8_t index)
     return p - data;
 }
 
-void HW_Send_Data(char *data)
-{
-    u3_printf("%s", data);
+void HW_Send_Data(char *data, uint8_t len)
+{ 
+    uint8_t i = 0;
+    while (i<len)
+    {
+        /* code */
+        u3_printf("%c", data[i]);
+        printf("%c", data[i]);
+        i++;
+    }
+    
 }

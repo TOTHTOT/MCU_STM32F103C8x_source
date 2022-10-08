@@ -110,6 +110,18 @@ extern "C" {
 /** User area the current device state structure*/
 extern dataPoint_t currentDataPoint;
 
+#define DIS_USEND 0
+#define EN_U1SEND 1
+#define EN_U2SEND 2
+#define EN_U3SEND 3
+extern uint8_t usart_send_state;
+
+extern uint8_t USART1_RX_BUF[200];
+extern uint8_t USART3_RX_BUF[200];
+extern uint16_t USART1_RX_STA;
+extern uint16_t USART3_RX_STA;
+
+
 void gizTimerMs(void);
 void timerInit(void);
 void uartInit(void);

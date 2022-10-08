@@ -120,8 +120,8 @@ int main(void)
     gizwitsInit();
     GIZWITS_LOG("MCU Init Success \n");
     // DHT11_Init();
-    OLED_Init();
-    main_page();
+    // OLED_Init();
+    // main_page();
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -134,15 +134,63 @@ int main(void)
         if (loop_times % 100 == 0)
         {
             LED0_TOGGLE; //每500ms led 闪烁一次
-            u3_printf("11%d\r\n", 1);
+            // u3_printf("11%d\r\n", 1);
             DHT11_Read_Data(&currentDataPoint.valuewendu, &currentDataPoint.valueshidu);
             gizwitsHandle((dataPoint_t *)&currentDataPoint); //数据上报
-            printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);
-            main_page_data();
+            // printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);
+            // main_page_data();
+            // uartWrite("111\r\n", 5);
+        }
+        if (loop_times & 200 == 0)
+        {
+            // IR_Learn_Pack((char *)buf, 0);
+            // HW_Send_Data((char *)buf);
+            loop_times = 0;
         }
         userHandle();
 
         loop_times++;
+        if (usart_send_state != DIS_USEND)
+        {
+            switch (usart_send_state)
+            {
+            case EN_U1SEND:
+// LED0_TOGGLE;
+                printf("data:%s", USART1_RX_BUF);
+#if 0
+                if (strcmp((char *)USART1_RX_BUF, "111") == 0)
+                {
+                    // printf("send data\r\n");
+                    HW_Send_Data((char *)buf, IR_Learn_Pack(buf, 0));
+                }
+                else if (strcmp((char *)USART1_RX_BUF, "222") == 0)
+                {
+                    HW_Send_Data((char *)buf, IR_Send_Pack(buf, 0));
+                }
+                else if (strcmp((char *)USART1_RX_BUF, "333") == 0)
+                {
+                    HW_Send_Data((char *)inside_exit_learn_code, 9);
+                }
+                // u3_printf("data:%s\r\n",inside_learn_code[0][0]);
+#endif
+                USART1_RX_STA = 0;
+                memset(USART1_RX_BUF, 0, sizeof(USART1_RX_BUF));
+                usart_send_state = DIS_USEND;
+                break;
+            case EN_U2SEND:
+                usart_send_state = DIS_USEND;
+                break;
+            case EN_U3SEND:
+                usart_send_state = DIS_USEND;
+                break;
+            case 4:
+                printf("no compelite\r\n");
+                usart_send_state = DIS_USEND;
+                break;
+            default:
+                break;
+            }
+        }
         delay_ms(5);
     }
     /* USER CODE END 3 */
@@ -203,44 +251,54 @@ static void MX_NVIC_Init(void)
     HAL_NVIC_SetPriority(TIM2_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(TIM2_IRQn);
     /* USART2_IRQn interrupt configuration */
-    HAL_NVIC_SetPriority(USART2_IRQn, 3, 0);
+    HAL_NVIC_SetPriority(USART2_IRQn, 6, 0);
     HAL_NVIC_EnableIRQ(USART2_IRQn);
 }
 
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-    uint16_t buf_len;
+    //  uint16_t buf_len;
     uint8_t hw_index;
+    /* 按下"学习"按钮进入学习模式,按如下顺序学习:
+    1.进入学习模式OLED显示"Learning"
+    2.按下"温度增加"红外模块绿灯亮起,空调遥控器对准孔外接收管,按下对应按键,红外模块LED熄灭表示学习完成;
+    3.按下"温度降低",同上操作;
+    4.按下"风速", 同上操作;
+    5.按下"模式", 同上操作;
+    6.在完成学习后再次按下学习按钮退出学习模式.
+     */
     switch (GPIO_Pin)
     {
-    case wd_down_Pin:
-        delay_ms(10);
-        if (HAL_GPIO_ReadPin(wd_down_GPIO_Port, wd_down_Pin) == 0)
-        {
-            if (run_states == default_mode) //默认工作模式
-            {
-            }
-            else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
-            {
-            }
-        }
-        break;
     case wd_up_Pin:
         delay_ms(10);
         if (HAL_GPIO_ReadPin(wd_up_GPIO_Port, wd_up_Pin) == 0)
         {
             if (run_states == default_mode) //默认工作模式
             {
+                hw_index = 0;
+                HW_Send_Data((char *)buf, IR_Send_Pack(buf, hw_index));
+            }
+            else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
+            {
+                hw_index = 0;
+                HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
+            }
+        }
+        break;
+    case wd_down_Pin:
+        delay_ms(10);
+        if (HAL_GPIO_ReadPin(wd_down_GPIO_Port, wd_down_Pin) == 0)
+        {
+            if (run_states == default_mode) //默认工作模式
+            {
                 hw_index = 1;
-                buf_len = IR_Send_Pack(buf, hw_index);
-                HW_Send_Data(buf);
+                HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
             else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
             {
                 hw_index = 1;
-                buf_len = IR_Learn_Pack(buf, hw_index);
-                HW_Send_Data(buf);
+                HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
         }
         break;
@@ -250,9 +308,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         {
             if (run_states == default_mode) //默认工作模式
             {
+                hw_index = 2;
+                HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
             else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
             {
+                hw_index = 2;
+                HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
         }
         break;
@@ -262,9 +324,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         {
             if (run_states == default_mode) //默认工作模式
             {
+                hw_index = 3;
+                HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
             else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
             {
+                hw_index = 3;
+                HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
         }
         break;
@@ -276,6 +342,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
                 run_states = learn_mode;
             else if (run_states == learn_mode)
                 run_states = default_mode;
+            main_page_data();
         }
         break;
     default:

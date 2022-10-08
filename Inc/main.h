@@ -62,6 +62,7 @@
 #define ch_fs_EXTI_IRQn EXTI15_10_IRQn
 #define wd_up_Pin GPIO_PIN_8
 #define wd_up_GPIO_Port GPIOA
+#define wd_up_EXTI_IRQn EXTI9_5_IRQn
 #define ESP_IO0_Pin GPIO_PIN_3
 #define ESP_IO0_GPIO_Port GPIOB
 #define ESP_IO2_Pin GPIO_PIN_4
