@@ -50,7 +50,7 @@ int32_t gizPutData(uint8_t *buf, uint32_t len)
     count = rbWrite(&pRb, buf, len);
     if(count != len)
     {
-        GIZWITS_LOG("ERR: Failed to rbWrite \n");
+        GIZWITS_LOG("ERR: Failed to rbWrite , error:%d\r\n",count);
         return -1;
     }
 

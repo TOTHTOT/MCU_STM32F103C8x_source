@@ -2,7 +2,7 @@
  * @Description: ºìÍâÄ£¿éÇý¶¯
  * @Author: TOTHTOT
  * @Date: 2022-10-07 20:35:44
- * @LastEditTime: 2022-10-08 18:37:26
+ * @LastEditTime: 2022-10-09 20:20:14
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\HONGWAI\hongwai.h
  */
@@ -16,12 +16,35 @@
 #define FRAME_END		0x16
 #define MODULE_ADDR		0xff
 
-enum State_handle
+typedef enum 
 {
     learn_mode,
     default_mode
-};
-extern enum State_handle run_states;
+}State_Handle;
+
+typedef enum 
+{
+    low,
+    mid,
+    high
+}WindSpeed_Handle;
+
+typedef enum 
+{
+    cool,
+    warm
+}WorkMode_Handle;
+
+typedef struct 
+{
+	WorkMode_Handle workmod;
+    WindSpeed_Handle windspeed;
+    State_Handle run_mode;
+    uint8_t kt_temp;
+}KT_State_Handle;
+extern KT_State_Handle KT_run_state;
+
+// extern  State_Handle run_states;
 extern uint8_t inside_learn_code[7][8];
 extern uint8_t inside_exit_learn_code[];
 extern uint8_t inside_send_code[7][8];

@@ -44,6 +44,44 @@ uint8_t usart_send_state = DIS_USEND;
 /**@name Gizwits User Interface
  * @{
  */
+/**
+ * @name: my_eventprocess
+ * @msg: 事件处理函数
+ * @param {EVENT_TYPE_T} event_type 事件类型
+ * @return {*}
+ */
+void my_eventprocess(EVENT_TYPE_T event_type)
+{
+    uint8_t buf[128];
+    uint8_t i = 0;
+    switch (event_type)
+    {
+    case EVENT_windspeed: 
+
+        break;
+    case EVENT_work_mod: //工作模式选择(0),制冷或者制热(1)
+        if (currentDataPoint.valuework_mod == 0 && KT_run_state.workmod == warm)
+        {
+        }
+        break;
+    case EVENT_wemdu_kongzhi:   // 根据温度相差的度数决定发送编码的次数
+        if (currentDataPoint.valuewemdu_kongzhi > KT_run_state.run_mode)
+        { //目标温度大于空调现在温度, 相当于按下"温度降低"
+            i = currentDataPoint.valuewemdu_kongzhi - KT_run_state.kt_temp;
+            for (; i > 0; i--)
+                HW_Send_Data(buf, IR_Send_Pack(buf, 1));
+        }
+        else if (currentDataPoint.valuewemdu_kongzhi < KT_run_state.run_mode)
+        { //目标温度小于空调现在温度, 相当于按下"温度增加"
+            i = -currentDataPoint.valuewemdu_kongzhi + KT_run_state.kt_temp;
+            for (; i > 0; i--)
+                HW_Send_Data(buf, IR_Send_Pack(buf, 0));
+        }
+        break;
+    default:
+        break;
+    }
+}
 
 /**
 * @brief Event handling interface
@@ -89,12 +127,14 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             switch (currentDataPoint.valuewindspeed)
             {
             case windspeed_VALUE0:
-                // user handle
+                my_eventprocess(EVENT_windspeed);
                 break;
             case windspeed_VALUE1:
+                my_eventprocess(EVENT_windspeed);
                 // user handle
                 break;
             case windspeed_VALUE2:
+                my_eventprocess(EVENT_windspeed);
                 // user handle
                 break;
             default:
@@ -108,9 +148,11 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             {
             case work_mod_VALUE0:
                 // user handle
+                my_eventprocess(EVENT_work_mod);
                 break;
             case work_mod_VALUE1:
                 // user handle
+                my_eventprocess(EVENT_work_mod);
                 break;
             default:
                 break;
@@ -121,6 +163,7 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             currentDataPoint.valuewemdu_kongzhi = dataPointPtr->valuewemdu_kongzhi;
             GIZWITS_LOG("Evt:EVENT_wemdu_kongzhi %d\n", currentDataPoint.valuewemdu_kongzhi);
             // user handle
+            my_eventprocess(EVENT_wemdu_kongzhi);
             break;
 
         case WIFI_SOFTAP:
@@ -300,14 +343,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
     {
         gizPutData((uint8_t *)&aRxBuffer, 1);
         HAL_UART_Receive_IT(&huart2, (uint8_t *)&aRxBuffer, 1); //开启下一次接收中断
-        // uartWrite("1", 1);
-        usart_send_state = EN_U2SEND;
     }
     else if (UartHandle->Instance == USART3)
     {
         usart_send_state = EN_U3SEND;
-        printf("%c", aRxBuffer_3);
-        while(HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer_3, 1)!=HAL_OK) //开启下一次接收中断
+        // printf("%c", aRxBuffer_3);
+        while (HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer_3, 1) != HAL_OK) //开启下一次接收中断
         {
             /* HAL_UART_Receive_IT 内部会锁住 */
             huart3.RxState = HAL_UART_STATE_READY;
@@ -316,27 +357,31 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
     }
     else if (UartHandle->Instance == USART1)
     {
-                // 串口1 中断
+        // 串口1 中断
         if ((USART1_RX_STA & 0x8000) == 0) //接收未完成
         {
-            if(USART1_RX_STA&0x4000)//接收到了0x0d
-        	{
-        		if(aRxBuffer_1!=0x0a)USART1_RX_STA=0;//接收错误,重新开始
-        		else USART1_RX_STA|=0x8000;	//接收完成了
-        	}
-        	else //还没收到0X0D
-        	{
-        		if(aRxBuffer_1==0x0d)USART1_RX_STA|=0x4000;
-        		else
-        		{
-        			USART1_RX_BUF[USART1_RX_STA&0X3FFF]=aRxBuffer_1 ;
-        			USART1_RX_STA++;
-        			if(USART1_RX_STA>(200-1))USART1_RX_STA=0;//接收数据错误,重新开始接收
-        		}
-        	}
-           // usart_send_state = 4;
+            if (USART1_RX_STA & 0x4000) //接收到了0x0d
+            {
+                if (aRxBuffer_1 != 0x0a)
+                    USART1_RX_STA = 0; //接收错误,重新开始
+                else
+                    USART1_RX_STA |= 0x8000; //接收完成了
+            }
+            else //还没收到0X0D
+            {
+                if (aRxBuffer_1 == 0x0d)
+                    USART1_RX_STA |= 0x4000;
+                else
+                {
+                    USART1_RX_BUF[USART1_RX_STA & 0X3FFF] = aRxBuffer_1;
+                    USART1_RX_STA++;
+                    if (USART1_RX_STA > (200 - 1))
+                        USART1_RX_STA = 0; //接收数据错误,重新开始接收
+                }
+            }
+            // usart_send_state = 4;
         }
-        if(USART1_RX_STA&0x8000)
+        if (USART1_RX_STA & 0x8000)
         {
             usart_send_state = EN_U1SEND;
         }
@@ -362,7 +407,7 @@ void uartInit(void)
     // huart3.pRxBuffPtr = (uint8_t *)malloc(1);
     HAL_UART_Receive_IT(&huart1, (uint8_t *)&aRxBuffer_1, 1); //开启下一次接收中断
     HAL_UART_Receive_IT(&huart2, (uint8_t *)&aRxBuffer, 1);   //开启下一次接收中断
-    HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer_3, 1);       //开启下一次接收中断
+    HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer_3, 1); //开启下一次接收中断
 }
 
 /**

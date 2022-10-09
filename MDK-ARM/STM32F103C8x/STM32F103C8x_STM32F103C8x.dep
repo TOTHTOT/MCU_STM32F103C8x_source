@@ -1,6 +1,6 @@
 Dependencies for Project 'STM32F103C8x', Target 'STM32F103C8x': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::.\ARMCC
-F (../Src/main.c)(0x63416B14)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\main.o --depend stm32f103c8x\main.d)
+F (../Src/main.c)(0x6342B994)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\main.o --depend stm32f103c8x\main.d)
 I (../Inc/main.h)(0x6341242F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x633A865A)
 I (../Inc/stm32f1xx_hal_conf.h)(0x6341242F)
@@ -45,7 +45,7 @@ I (..\SYSTEM\delay\delay.h)(0x592658E1)
 I (..\SYSTEM\sys\sys.h)(0x59254213)
 I (..\HARDWARE\DHT11\dht11.h)(0x6340F0DA)
 I (..\HARDWARE\OLED\oled.h)(0x633AA70F)
-I (..\HARDWARE\HONGWAI\hongwai.h)(0x634152EC)
+I (..\HARDWARE\HONGWAI\hongwai.h)(0x6342B982)
 F (../Src/gpio.c)(0x6341242E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\gpio.o --depend stm32f103c8x\gpio.d)
 I (../Inc/gpio.h)(0x6341242E)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x633A865A)
@@ -164,7 +164,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x633A865A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x633A865A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x633A865A)
 I (../Inc/gpio.h)(0x6341242E)
-F (../Src/stm32f1xx_it.c)(0x63416965)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\stm32f1xx_it.o --depend stm32f103c8x\stm32f1xx_it.d)
+F (../Src/stm32f1xx_it.c)(0x6342B7A1)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\stm32f1xx_it.o --depend stm32f103c8x\stm32f1xx_it.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x633A865A)
 I (../Inc/stm32f1xx_hal_conf.h)(0x6341242F)
 I (../Inc/main.h)(0x6341242F)
@@ -284,7 +284,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x633A865A)
 I (..\SYSTEM\delay\delay.h)(0x592658E1)
 I (..\SYSTEM\sys\sys.h)(0x59254213)
 I (../Inc/usart.h)(0x6341242F)
-F (..\HARDWARE\OLED\oled.c)(0x63416A83)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\oled.o --depend stm32f103c8x\oled.d)
+F (..\HARDWARE\OLED\oled.c)(0x6342B9A7)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\oled.o --depend stm32f103c8x\oled.d)
 I (..\HARDWARE\OLED\oled.h)(0x633AA70F)
 I (../Inc/gpio.h)(0x6341242E)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x633A865A)
@@ -324,10 +324,10 @@ I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
 I (..\Utils\common.h)(0x6035B654)
 I (E:\Keil Programma\ARM\ARMCC\include\ctype.h)(0x5E53505C)
 I (../Inc/i2c.h)(0x6341242E)
-I (..\HARDWARE\HONGWAI\hongwai.h)(0x634152EC)
+I (..\HARDWARE\HONGWAI\hongwai.h)(0x6342B982)
 I (../Inc/usart.h)(0x6341242F)
-F (..\HARDWARE\HONGWAI\hongwai.c)(0x63416302)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\hongwai.o --depend stm32f103c8x\hongwai.d)
-I (..\HARDWARE\HONGWAI\hongwai.h)(0x634152EC)
+F (..\HARDWARE\HONGWAI\hongwai.c)(0x6342B922)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\hongwai.o --depend stm32f103c8x\hongwai.d)
+I (..\HARDWARE\HONGWAI\hongwai.h)(0x6342B982)
 I (../Inc/usart.h)(0x6341242F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x633A865A)
 I (../Inc/stm32f1xx_hal_conf.h)(0x6341242F)
@@ -358,7 +358,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x633A865A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x633A865A)
 I (E:\Keil Programma\ARM\ARMCC\include\stdarg.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
-F (..\Gizwits\gizwits_product.c)(0x634158C4)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\gizwits_product.o --depend stm32f103c8x\gizwits_product.d)
+F (..\Gizwits\gizwits_product.c)(0x634296FB)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\gizwits_product.o --depend stm32f103c8x\gizwits_product.d)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
 I (..\Hal\hal_key.h)(0x6035B654)
@@ -396,9 +396,9 @@ I (..\Utils\common.h)(0x6035B654)
 I (E:\Keil Programma\ARM\ARMCC\include\ctype.h)(0x5E53505C)
 I (..\HARDWARE\LED\led.h)(0x633A9F4E)
 I (../Inc/gpio.h)(0x6341242E)
-I (..\HARDWARE\HONGWAI\hongwai.h)(0x634152EC)
+I (..\HARDWARE\HONGWAI\hongwai.h)(0x6342B982)
 I (../Inc/usart.h)(0x6341242F)
-F (..\Gizwits\gizwits_protocol.c)(0x6339C2D8)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\gizwits_protocol.o --depend stm32f103c8x\gizwits_protocol.d)
+F (..\Gizwits\gizwits_protocol.c)(0x63428CEF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\gizwits_protocol.o --depend stm32f103c8x\gizwits_protocol.d)
 I (..\Utils\ringBuffer.h)(0x6035B654)
 I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)
@@ -512,7 +512,7 @@ I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
 I (..\Utils\common.h)(0x6035B654)
 I (E:\Keil Programma\ARM\ARMCC\include\stdbool.h)(0x62DFB555)
 I (E:\Keil Programma\ARM\ARMCC\include\ctype.h)(0x5E53505C)
-F (..\Utils\ringbuffer.c)(0x6035B654)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\ringbuffer.o --depend stm32f103c8x\ringbuffer.d)
+F (..\Utils\ringbuffer.c)(0x6342988D)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\ringbuffer.o --depend stm32f103c8x\ringbuffer.d)
 I (..\Utils\ringBuffer.h)(0x6035B654)
 I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)

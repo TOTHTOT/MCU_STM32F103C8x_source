@@ -389,7 +389,7 @@ void main_page_data()
     OLED_ShowNum(25, 2, currentDataPoint.valuewemdu_kongzhi, 3, 16);
     OLED_ShowNum(25+64, 2, currentDataPoint.valuewindspeed, 3, 16);
     OLED_ShowNum(25, 4, currentDataPoint.valuewindspeed, 3, 16);
-    if(run_states==learn_mode)
+    if(KT_run_state.run_mode==learn_mode)
     {
         OLED_ShowString(0, 6, "Learning...", 16);
     }

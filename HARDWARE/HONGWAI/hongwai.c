@@ -2,7 +2,7 @@
  * @Description:
  * @Author: TOTHTOT
  * @Date: 2022-10-07 20:35:33
- * @LastEditTime: 2022-10-08 19:46:10
+ * @LastEditTime: 2022-10-09 20:17:27
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\HONGWAI\hongwai.c
  */
@@ -11,8 +11,8 @@
 #include "stdio.h"
 #include "string.h"
 
-enum State_handle run_states = default_mode;
-
+//  State_Handle run_states = default_mode;
+KT_State_Handle KT_run_state ={low, cool, default_mode, 26};
 
 // ÄÚ²¿Ñ§Âë
 uint8_t inside_learn_code[7][8]={

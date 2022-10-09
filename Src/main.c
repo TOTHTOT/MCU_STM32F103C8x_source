@@ -119,7 +119,7 @@ int main(void)
     userInit();
     gizwitsInit();
     GIZWITS_LOG("MCU Init Success \n");
-    // DHT11_Init();
+    DHT11_Init();
     // OLED_Init();
     // main_page();
     /* USER CODE END 2 */
@@ -131,20 +131,19 @@ int main(void)
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-        if (loop_times % 100 == 0)
+        if (loop_times % 50 == 0)
         {
-            LED0_TOGGLE; //每500ms led 闪烁一次
             // u3_printf("11%d\r\n", 1);
             DHT11_Read_Data(&currentDataPoint.valuewendu, &currentDataPoint.valueshidu);
+            
             gizwitsHandle((dataPoint_t *)&currentDataPoint); //数据上报
-            // printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);
             // main_page_data();
             // uartWrite("111\r\n", 5);
         }
-        if (loop_times & 200 == 0)
+        if (loop_times % 100 == 0)
         {
-            // IR_Learn_Pack((char *)buf, 0);
-            // HW_Send_Data((char *)buf);
+            LED0_TOGGLE; //每500ms led 闪烁一次
+            // printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);
             loop_times = 0;
         }
         userHandle();
@@ -173,6 +172,14 @@ int main(void)
                 }
                 // u3_printf("data:%s\r\n",inside_learn_code[0][0]);
 #endif
+                if(strcmp(USART1_RX_BUF, "11")==0)
+                {
+                   printf("\r\nairlink:%d\r\n", gizwitsSetMode(WIFI_SOFTAP_MODE));
+                }
+                if(strcmp(USART1_RX_BUF, "22")==0)
+                {
+                   printf("\r\nairlink:%d\r\n", gizwitsSetMode(WIFI_AIRLINK_MODE));
+                }
                 USART1_RX_STA = 0;
                 memset(USART1_RX_BUF, 0, sizeof(USART1_RX_BUF));
                 usart_send_state = DIS_USEND;
@@ -274,12 +281,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         delay_ms(10);
         if (HAL_GPIO_ReadPin(wd_up_GPIO_Port, wd_up_Pin) == 0)
         {
-            if (run_states == default_mode) //默认工作模式
+            if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
                 hw_index = 0;
                 HW_Send_Data((char *)buf, IR_Send_Pack(buf, hw_index));
             }
-            else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
+            else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
             {
                 hw_index = 0;
                 HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
@@ -290,12 +297,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         delay_ms(10);
         if (HAL_GPIO_ReadPin(wd_down_GPIO_Port, wd_down_Pin) == 0)
         {
-            if (run_states == default_mode) //默认工作模式
+            if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
                 hw_index = 1;
                 HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
-            else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
+            else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
             {
                 hw_index = 1;
                 HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
@@ -306,12 +313,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         delay_ms(10);
         if (HAL_GPIO_ReadPin(ch_fs_GPIO_Port, ch_fs_Pin) == 0)
         {
-            if (run_states == default_mode) //默认工作模式
+            if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
                 hw_index = 2;
                 HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
-            else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
+            else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
             {
                 hw_index = 2;
                 HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
@@ -322,12 +329,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         delay_ms(10);
         if (HAL_GPIO_ReadPin(ch_mod_GPIO_Port, ch_mod_Pin) == 0)
         {
-            if (run_states == default_mode) //默认工作模式
+            if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
                 hw_index = 3;
                 HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
             }
-            else if (run_states == learn_mode) //学习模式,按下开始学习遥控器
+            else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
             {
                 hw_index = 3;
                 HW_Send_Data((char *)buf, IR_Learn_Pack(buf, hw_index));
@@ -338,10 +345,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         delay_ms(10);
         if (HAL_GPIO_ReadPin(learn_bt_GPIO_Port, learn_bt_Pin) == 0)
         {
-            if (run_states == default_mode)
-                run_states = learn_mode;
-            else if (run_states == learn_mode)
-                run_states = default_mode;
+            if (KT_run_state.run_mode == default_mode)
+                KT_run_state.run_mode = learn_mode;
+            else if (KT_run_state.run_mode == learn_mode)
+                KT_run_state.run_mode = default_mode;
             main_page_data();
         }
         break;
