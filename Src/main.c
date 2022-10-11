@@ -119,9 +119,7 @@ int main(void)
     userInit();
     gizwitsInit();
     GIZWITS_LOG("MCU Init Success \n");
-    HAL_GPIO_WritePin(ESP_RST_GPIO_Port, ESP_RST_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(ESP_IO0_GPIO_Port, ESP_IO0_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(ESP_IO2_GPIO_Port, ESP_IO2_Pin, GPIO_PIN_SET);
+    
     DHT11_Init();
     // OLED_Init();
     // main_page();
