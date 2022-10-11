@@ -241,7 +241,9 @@ void userHandle(void)
 void userInit(void)
 {
     memset((uint8_t *)&currentDataPoint, 0, sizeof(dataPoint_t));
-
+    HAL_GPIO_WritePin(ESP_RST_GPIO_Port, ESP_RST_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(ESP_IO0_GPIO_Port, ESP_IO0_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(ESP_IO2_GPIO_Port, ESP_IO2_Pin, GPIO_PIN_SET);
     /** Warning !!! DataPoint Variables Init , Must Within The Data Range **/
 
     currentDataPoint.valuewindspeed = 0;
