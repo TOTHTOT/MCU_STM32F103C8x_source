@@ -21,6 +21,7 @@
 #include "common.h"
 #include "led.h"
 #include "hongwai.h"
+#include "delay.h"
 
 static uint32_t timerMsCount;
 uint8_t aRxBuffer;
@@ -53,29 +54,59 @@ uint8_t usart_send_state = DIS_USEND;
 void my_eventprocess(EVENT_TYPE_T event_type)
 {
     uint8_t buf[128];
-    uint8_t i = 0;
+    char i = 0;
     switch (event_type)
     {
     case EVENT_windspeed: 
-
+        if (currentDataPoint.valuewindspeed == 0 )
+        {
+            HW_Send_Data(buf, IR_Send_Pack(buf, 2));
+        }
+        else if (currentDataPoint.valuewindspeed == 1)
+        {
+            HW_Send_Data(buf, IR_Send_Pack(buf, 3));
+        }
+        else if (currentDataPoint.valuewindspeed == 2)
+        {
+            HW_Send_Data(buf, IR_Send_Pack(buf, 4));
+        }
         break;
-    case EVENT_work_mod: //工作模式选择(0),制冷或者制热(1)
+    case EVENT_work_mod: //工作模式选择,制冷(0)或者制热(1)
         if (currentDataPoint.valuework_mod == 0 && KT_run_state.workmod == warm)
         {
+            HW_Send_Data(buf, IR_Send_Pack(buf, 5));
+        }
+        else if(currentDataPoint.valuework_mod == 1 && KT_run_state.workmod == cool)
+        {
+            HW_Send_Data(buf, IR_Send_Pack(buf, 6));
         }
         break;
     case EVENT_wemdu_kongzhi:   // 根据温度相差的度数决定发送编码的次数
-        if (currentDataPoint.valuewemdu_kongzhi > KT_run_state.run_mode)
-        { //目标温度大于空调现在温度, 相当于按下"温度降低"
+        if (currentDataPoint.valuewemdu_kongzhi > KT_run_state.kt_temp)
+        { //目标温度大于空调现在温度, 相当于按下"温度增加"
             i = currentDataPoint.valuewemdu_kongzhi - KT_run_state.kt_temp;
+            printf("\r\n************UP, kt_temp:%d, kz_temp:%d*************\r\n", KT_run_state.kt_temp, currentDataPoint.valuewemdu_kongzhi);
             for (; i > 0; i--)
-                HW_Send_Data(buf, IR_Send_Pack(buf, 1));
-        }
-        else if (currentDataPoint.valuewemdu_kongzhi < KT_run_state.run_mode)
-        { //目标温度小于空调现在温度, 相当于按下"温度增加"
-            i = -currentDataPoint.valuewemdu_kongzhi + KT_run_state.kt_temp;
-            for (; i > 0; i--)
+            {
                 HW_Send_Data(buf, IR_Send_Pack(buf, 0));
+                // printf("i等于:%d\r\n", i);
+                printf("\r\n*********i===:%d************\r\n", i);
+                delay_ms(500);
+            }
+            KT_run_state.kt_temp = currentDataPoint.valuewemdu_kongzhi;
+        }
+        else if (currentDataPoint.valuewemdu_kongzhi < KT_run_state.kt_temp)
+        { //目标温度小于空调现在温度, 相当于按下"温度降低"
+            printf("\r\n************DOWM*************\r\n");
+            i = KT_run_state.kt_temp - currentDataPoint.valuewemdu_kongzhi;
+            printf("\r\n*********i===:%d, kt_temp:%d, kz_temp:%d************\r\n", i, KT_run_state.kt_temp, currentDataPoint.valuewemdu_kongzhi);
+            for (; i > 0; i--)
+            {
+                printf("\r\n*********i===:%d************\r\n", i);
+                HW_Send_Data(buf, IR_Send_Pack(buf, 1));
+                delay_ms(500);
+            }
+            KT_run_state.kt_temp = currentDataPoint.valuewemdu_kongzhi;
         }
         break;
     default:

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: TOTHTOT
  * @Date: 2022-10-07 20:35:33
- * @LastEditTime: 2022-10-09 20:17:27
+ * @LastEditTime: 2022-10-11 20:05:15
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\HONGWAI\hongwai.c
  */
@@ -36,6 +36,15 @@ uint8_t inside_send_code[7][8] ={
     {0x68, 0x08, 0x00, 0xFF, 0x12, 0x04, 0x15, 0x16}, 
     {0x68, 0x08, 0x00, 0xFF, 0x12, 0x05, 0x16, 0x16}, 
     {0x68, 0x08, 0x00, 0xFF, 0x12, 0x06, 0x17, 0x16}, 
+};
+uint8_t inside_read_code[][8] = {
+    {0x68, 0x08, 0x00, 0xFF, 0x18, 0x00, 0x17, 0x16},
+    {0x68, 0x08, 0x00, 0xFF, 0x18, 0x01, 0x18, 0x16},
+    {0x68, 0x08, 0x00, 0xFF, 0x18, 0x02, 0x19, 0x16},
+    {0x68, 0x08, 0x00, 0xFF, 0x18, 0x03, 0x20, 0x16},
+    {0x68, 0x08, 0x00, 0xFF, 0x18, 0x04, 0x21, 0x16},
+    {0x68, 0x08, 0x00, 0xFF, 0x18, 0x05, 0x22, 0x16},
+    {0x68, 0x08, 0x00, 0xFF, 0x18, 0x06, 0x23, 0x16},
 };
 /**
  * @name: u3_printf
@@ -119,6 +128,28 @@ uint16_t IR_Send_Pack(uint8_t *data, uint8_t index)
     return p - data;
 }
 
+/**
+ * @name: IR_Read_Pack
+ * @msg: 红外内部读码指令组合包
+ * @param {uint8_t} *data
+ * @param {uint8_t} index
+ * @return {*}
+ */
+uint16_t IR_Read_Pack(uint8_t *data, uint8_t index)
+{
+    uint8_t *p = data;
+    *p++ = FRAME_START;
+    *p++ = 0x08;
+    *p++ = 0x00;
+    *p++ = MODULE_ADDR;
+    *p++ = 0x18;
+    *p++ = index;
+    *p = Get_Check(&data[3], p - data - 3);
+    printf("码:%d\r\n",Get_Check(&data[3], p - data - 3));
+    p++;
+    *p++ = FRAME_END;
+    return p - data;
+}
 void HW_Send_Data(char *data, uint8_t len)
 { 
     uint8_t i = 0;
@@ -126,7 +157,7 @@ void HW_Send_Data(char *data, uint8_t len)
     {
         /* code */
         u3_printf("%c", data[i]);
-        printf("%c", data[i]);
+        // printf("%c", data[i]);
         i++;
     }
     
