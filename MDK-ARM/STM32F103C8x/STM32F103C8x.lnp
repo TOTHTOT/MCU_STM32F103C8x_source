@@ -10,6 +10,7 @@
 "stm32f103c8x\dht11.o"
 "stm32f103c8x\oled.o"
 "stm32f103c8x\hongwai.o"
+"stm32f103c8x\stmflash.o"
 "stm32f103c8x\gizwits_product.o"
 "stm32f103c8x\gizwits_protocol.o"
 "stm32f103c8x\delay.o"

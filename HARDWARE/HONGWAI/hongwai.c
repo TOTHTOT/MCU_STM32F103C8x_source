@@ -2,7 +2,7 @@
  * @Description:
  * @Author: TOTHTOT
  * @Date: 2022-10-07 20:35:33
- * @LastEditTime: 2022-10-11 20:05:15
+ * @LastEditTime: 2022-10-12 17:59:47
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\HONGWAI\hongwai.c
  */
@@ -10,9 +10,9 @@
 #include "stdarg.h"
 #include "stdio.h"
 #include "string.h"
-
+// #include ""
 //  State_Handle run_states = default_mode;
-KT_State_Handle KT_run_state ={low, cool, default_mode, 26};
+KT_State_Handle KT_run_state ={low, cool, default_mode, 0, 26, 0};
 
 // 内部学码
 uint8_t inside_learn_code[7][8]={
@@ -46,6 +46,8 @@ uint8_t inside_read_code[][8] = {
     {0x68, 0x08, 0x00, 0xFF, 0x18, 0x05, 0x22, 0x16},
     {0x68, 0x08, 0x00, 0xFF, 0x18, 0x06, 0x23, 0x16},
 };
+
+
 /**
  * @name: u3_printf
  * @msg: 自定义printf
@@ -150,9 +152,38 @@ uint16_t IR_Read_Pack(uint8_t *data, uint8_t index)
     *p++ = FRAME_END;
     return p - data;
 }
-void HW_Send_Data(char *data, uint8_t len)
+
+/**
+ * @name: IR_Learn_Outer_Pack
+ * @msg: 外部学码指令包
+ * @param {uint8_t} *data
+ * @return {*}
+ */
+uint16_t IR_Learn_Outer_Pack(uint8_t *data)
+{
+    uint8_t *p = data;
+    // 68 07 00 FF 20 1F 16
+    *p++ = FRAME_START;
+    *p++ = 0x07;
+    *p++ = 0x00;
+    *p++ = MODULE_ADDR;
+    *p++ = 0x20;
+    *p = 0x1f;
+    p++;
+    *p++ = FRAME_END;
+    return p - data;
+}
+
+/**
+ * @name: HW_Send_Data
+ * @msg: 发送数据
+ * @param {char} *data
+ * @param {uint16_t} len
+ * @return {*}
+ */
+void HW_Send_Data(uint8_t *data, uint16_t len)
 { 
-    uint8_t i = 0;
+    uint16_t i = 0;
     while (i<len)
     {
         /* code */

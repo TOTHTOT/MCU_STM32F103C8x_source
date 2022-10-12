@@ -21,6 +21,8 @@
 #include "common.h"
 #include "led.h"
 #include "hongwai.h"
+#include "stmflash.h"
+
 static uint32_t timerMsCount;
 uint8_t aRxBuffer;
 uint8_t aRxBuffer_1;
@@ -433,6 +435,8 @@ void timerInit(void)
 // }  
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 {
+    static uint8_t receive_buf[1024], head_flag = 0;
+    static uint16_t i = 0;
     // 不能在串口里同时收发 会造成死锁,改用标志
     if (UartHandle->Instance == USART2)
     {
@@ -442,7 +446,59 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
     else if (UartHandle->Instance == USART3)
     {
         usart_send_state = EN_U3SEND;
-        // printf("%c", aRxBuffer_3);
+        //u3_printf("%x ", aRxBuffer_3);
+        if(KT_run_state.learn_outer != 0)   // 开启外部学习模式时将数据储存到 FLASH
+        {
+            if(aRxBuffer_3 == 0x68)   // 起始符
+            {
+                head_flag++;
+                i = 0;
+                receive_buf[i] = aRxBuffer_3;
+                i++;
+				// u3_printf("%d%d\r\n", head_flag,KT_run_state.learn_outer);
+            }
+            else if(aRxBuffer_3 == 0x16&&head_flag == 2)
+            {
+                receive_buf[i] = aRxBuffer_3;
+                i++;
+                if(KT_run_state.learn_outer == 1)   // 学习开机
+                {
+                    printf("\r\n************save data len:%d************\r\n", i);
+                    u3_printf("\r\n************save data len:%d************\r\n", i);
+                    STMFLASH_Write(KT_POWER_ON_FLASH_ADDR,&i, 2);
+                    STMFLASH_Write(KT_POWER_ON_FLASH_ADDR+2,(uint16_t*)receive_buf,i);
+                    // u3_printf("\r\nbuf:\r\n");
+                    // HW_Send_Data(receive_buf, i);
+                    i = 0;
+                    head_flag = 0;
+                    memset(receive_buf, 0, sizeof(receive_buf));
+                }
+                else if(KT_run_state.learn_outer == 2)  // 学习关机
+                {
+                    printf("\r\n************save data len:%d************\r\n", i);
+                    u3_printf("\r\n************save data len:%d************\r\n", i);
+                    STMFLASH_Write(KT_POWER_OFF_FLASH_ADDR,(uint16_t*)receive_buf,i);
+                    i = 0;
+                    head_flag = 0;
+                    memset(receive_buf, 0, sizeof(receive_buf));
+                }
+                else
+                {
+                    u3_printf("unknow\r\n");
+                }
+                KT_run_state.learn_outer = 0;
+
+            }
+            else
+            {
+                receive_buf[i] = aRxBuffer_3;
+                i++;
+            }
+            if(aRxBuffer_3 == 0x16)
+            {
+                LED0_TOGGLE;
+            }
+        }
         while (HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer_3, 1) != HAL_OK) //开启下一次接收中断
         {
             /* HAL_UART_Receive_IT 内部会锁住 */

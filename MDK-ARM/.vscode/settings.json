@@ -6,6 +6,7 @@
         "delay.h": "c",
         "gizwits_product.h": "c",
         "gizwits_protocol.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "stdarg.h": "c"
     }
 }

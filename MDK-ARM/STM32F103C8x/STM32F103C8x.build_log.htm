@@ -22,34 +22,20 @@ Dialog DLL:      TCM.DLL V1.42.0.0
  
 <h2>Project:</h2>
 E:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\MDK-ARM\STM32F103C8x.uvprojx
-Project File Date:  10/11/2022
+Project File Date:  10/12/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Keil Programma\ARM\ARMCC\Bin'
 Build target 'STM32F103C8x'
-compiling gizwits_product.c...
-..\Gizwits\gizwits_product.c(61): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
-              HW_Send_Data(buf, IR_Send_Pack(buf, 2));
-..\Gizwits\gizwits_product.c(65): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
-              HW_Send_Data(buf, IR_Send_Pack(buf, 3));
-..\Gizwits\gizwits_product.c(69): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
-              HW_Send_Data(buf, IR_Send_Pack(buf, 4));
-..\Gizwits\gizwits_product.c(75): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
-              HW_Send_Data(buf, IR_Send_Pack(buf, 5));
-..\Gizwits\gizwits_product.c(79): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
-              HW_Send_Data(buf, IR_Send_Pack(buf, 6));
-..\Gizwits\gizwits_product.c(89): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
-                  HW_Send_Data(buf, IR_Send_Pack(buf, 0));
-..\Gizwits\gizwits_product.c(92): warning:  #223-D: function "delay_ms" declared implicitly
-                  delay_ms(500);
-..\Gizwits\gizwits_product.c(105): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
-                  HW_Send_Data(buf, IR_Send_Pack(buf, 1));
-..\Gizwits\gizwits_product.c(106): warning:  #223-D: function "delay_ms" declared implicitly
-                  delay_ms(500);
-..\Gizwits\gizwits_product.c: 9 warnings, 0 errors
+compiling main.c...
+../Src/main.c(145): warning:  #167-D: argument of type "int32_t *" is incompatible with parameter of type "uint32_t *"
+              DHT11_Read_Data(&currentDataPoint.valuewendu, &currentDataPoint.valueshidu);
+../Src/main.c(90): warning:  #177-D: variable "tt"  was declared but never referenced
+      uint16_t loop_times = 0, tt = 0, tt1 = 0;
+../Src/main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=22636 RO-data=292 RW-data=76 ZI-data=9268  
-"STM32F103C8x\STM32F103C8x.axf" - 0 Error(s), 9 Warning(s).
+Program Size: Code=24180 RO-data=292 RW-data=80 ZI-data=12240  
+"STM32F103C8x\STM32F103C8x.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
