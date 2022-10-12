@@ -75,6 +75,7 @@ extern "C" {
 /**@name Data point related definition
 * @{
 */
+#define power_LEN                           1
 #define windspeed_LEN                           2
 #define work_mod_LEN                           1
 
@@ -116,7 +117,7 @@ typedef enum
 } windspeed_ENUM_T;
 typedef enum
 {
-    work_mod_VALUE0 = 0,//could
+    work_mod_VALUE0 = 0,//cool
     work_mod_VALUE1 = 1,//harm
     work_mod_VALUE_MAX,
 } work_mod_ENUM_T;
@@ -141,6 +142,7 @@ typedef enum
   WIFI_NTP,                                         ///< Network time event
   MODULE_INFO,                                      ///< Module information event
   TRANSPARENT_DATA,                                 ///< Transparency events
+  EVENT_power,
   EVENT_windspeed,
   EVENT_work_mod,
   EVENT_wemdu_kongzhi,
@@ -306,6 +308,7 @@ typedef enum
 
 /** User Area Device State Structure */
 typedef struct {
+  bool valuepower;
   uint32_t valuewindspeed;
   uint32_t valuework_mod;
   int32_t valuewendu;
@@ -315,6 +318,7 @@ typedef struct {
 
 /** User Area Device State Structure */
 typedef struct {
+  uint8_t flagpower:1;
   uint8_t flagwindspeed:1;
   uint8_t flagwork_mod:1;
   uint8_t flagwendu:1;

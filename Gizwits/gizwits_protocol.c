@@ -50,7 +50,7 @@ int32_t gizPutData(uint8_t *buf, uint32_t len)
     count = rbWrite(&pRb, buf, len);
     if(count != len)
     {
-        GIZWITS_LOG("ERR: Failed to rbWrite , error:%d\r\n",count);
+        GIZWITS_LOG("ERR: Failed to rbWrite \n");
         return -1;
     }
 
@@ -117,6 +117,10 @@ uint32_t ICACHE_FLASH_ATTR calculateDynamicBitPartLen(dataPointFlags_t *aFlag)
 {
     uint32_t bitFieldBitLen = 0,bytetmpLen= 0;
     /* Processing only writable bool Enum type data */
+    if(0x01 == aFlag->flagpower)
+    {
+        bitFieldBitLen += power_LEN;
+    }
     if(0x01 == aFlag->flagwindspeed)
     {
         bitFieldBitLen += windspeed_LEN;
@@ -181,6 +185,14 @@ static int8_t ICACHE_FLASH_ATTR gizDataPoint2Event(uint8_t *issuedData, eventInf
     bitFieldByteLen = calculateDynamicBitPartLen(&elongateP0FormTmp.devDatapointFlag);
     byteFieldOffset += bitFieldByteLen + DATAPOINT_FLAG_LEN;//Value segment byte offset
 
+    if(0x01 == elongateP0FormTmp.devDatapointFlag.flagpower)
+    {
+        info->event[info->num] = EVENT_power;
+        info->num++;
+        dataPoints->valuepower = gizVarlenDecompressionValue(bitFieldOffset,power_LEN,(uint8_t *)&issuedData[DATAPOINT_FLAG_LEN],bitFieldByteLen);
+        bitFieldOffset += power_LEN;
+    }
+
     if(0x01 == elongateP0FormTmp.devDatapointFlag.flagwindspeed)
     {
         info->event[info->num] = EVENT_windspeed;
@@ -232,6 +244,12 @@ static int8_t ICACHE_FLASH_ATTR gizCheckReport(dataPoint_t *cur, dataPoint_t *la
     }
     currentTime = gizGetTimerCount();
 
+    if(last->valuepower != cur->valuepower)
+    {
+        GIZWITS_LOG("valuepower Changed\n");
+        gizwitsProtocol.waitReportDatapointFlag.flagpower = 1;
+        ret = 1;
+    }
     if(last->valuewindspeed != cur->valuewindspeed)
     {
         GIZWITS_LOG("valuewindspeed Changed\n");
@@ -310,6 +328,11 @@ static int8_t ICACHE_FLASH_ATTR gizDataPoints2ReportData(dataPoint_t *dataPoints
     }
 
     /*** Fill the bit ***/
+    if(gizwitsProtocol.waitReportDatapointFlag.flagpower)
+    {
+        gizVarlenCompressValue(bitFieldOffset,power_LEN,(uint8_t *)&allDatapointByteBuf[byteFieldOffset],dataPoints->valuepower);
+        bitFieldOffset += power_LEN;
+    }
     if(gizwitsProtocol.waitReportDatapointFlag.flagwindspeed)
     {
         if(dataPoints->valuewindspeed >= windspeed_VALUE_MAX)

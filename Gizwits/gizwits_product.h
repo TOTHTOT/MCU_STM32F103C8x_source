@@ -7,9 +7,9 @@
 * @version      V03030000
 * @copyright    Gizwits
 * 
-* @note         »úÖÇÔÆ.Ö»ÎªÖÇÄÜÓ²¼ş¶øÉú
+* @note         æœºæ™ºäº‘.åªä¸ºæ™ºèƒ½ç¡¬ä»¶è€Œç”Ÿ
 *               Gizwits Smart Cloud  for Smart Products
-*               Á´½Ó|ÔöÖµ?|¿ª·Å|ÖĞÁ¢|°²È«|×ÔÓĞ|×ÔÓÉ|ÉúÌ¬
+*               é“¾æ¥|å¢å€¼Öµ|å¼€æ”¾|ä¸­ç«‹|å®‰å…¨|è‡ªæœ‰|è‡ªç”±|ç”Ÿæ€
 *               www.gizwits.com
 *
 ***********************************************************/
@@ -109,7 +109,6 @@ extern "C" {
 
 /** User area the current device state structure*/
 extern dataPoint_t currentDataPoint;
-
 #define DIS_USEND 0
 #define EN_U1SEND 1
 #define EN_U2SEND 2

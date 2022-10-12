@@ -76,10 +76,9 @@ int32_t ICACHE_FLASH_ATTR rbCanWrite(rb_t *rb)
 {
     if(NULL == rb)
     {
-        //printf("my_rb null,error -1\r\n");
         return -1;
     }
-    //printf("my_rb:%d, %d\r\n", rbCapacity(rb), rbCanRead(rb));
+
     return rbCapacity(rb) - rbCanRead(rb);
 }
 

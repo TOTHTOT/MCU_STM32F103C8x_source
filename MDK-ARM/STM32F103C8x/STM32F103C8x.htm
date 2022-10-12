@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F103C8x\STM32F103C8x.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F103C8x\STM32F103C8x.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Oct 11 21:38:11 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Oct 12 10:10:51 2022
 <BR><P>
 <H3>Maximum Stack Usage =        624 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1122,7 +1122,7 @@ Global Symbols
 
 <P><STRONG><a name="[fe]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[b0]"></a>calculateDynamicBitPartLen</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, gizwits_protocol.o(i.calculateDynamicBitPartLen))
+<P><STRONG><a name="[b0]"></a>calculateDynamicBitPartLen</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, gizwits_protocol.o(i.calculateDynamicBitPartLen))
 <BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizDataPoint2Event
 </UL>
 
@@ -1226,7 +1226,7 @@ Global Symbols
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizProtocolCommonAck
 </UL>
 
-<P><STRONG><a name="[90]"></a>gizPutData</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, gizwits_protocol.o(i.gizPutData))
+<P><STRONG><a name="[90]"></a>gizPutData</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, gizwits_protocol.o(i.gizPutData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = gizPutData &rArr; rbWrite &rArr;  rbWrite (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rbWrite
@@ -1265,7 +1265,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizDataPoints2ReportData
 </UL>
 
-<P><STRONG><a name="[d1]"></a>gizwitsEventProcess</STRONG> (Thumb, 204 bytes, Stack size 40 bytes, gizwits_product.o(i.gizwitsEventProcess))
+<P><STRONG><a name="[d1]"></a>gizwitsEventProcess</STRONG> (Thumb, 286 bytes, Stack size 40 bytes, gizwits_product.o(i.gizwitsEventProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = gizwitsEventProcess &rArr; my_eventprocess &rArr; HW_Send_Data &rArr; u3_printf &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_eventprocess
@@ -1329,7 +1329,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 </UL>
 
-<P><STRONG><a name="[35]"></a>main</STRONG> (Thumb, 466 bytes, Stack size 128 bytes, main.o(i.main))
+<P><STRONG><a name="[35]"></a>main</STRONG> (Thumb, 484 bytes, Stack size 128 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 624<LI>Call Chain = main &rArr; gizwitsHandle &rArr; gizwitsEventProcess &rArr; my_eventprocess &rArr; HW_Send_Data &rArr; u3_printf &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInit
@@ -1368,7 +1368,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizwitsHandle
 </UL>
 
-<P><STRONG><a name="[d2]"></a>my_eventprocess</STRONG> (Thumb, 224 bytes, Stack size 152 bytes, gizwits_product.o(i.my_eventprocess))
+<P><STRONG><a name="[d2]"></a>my_eventprocess</STRONG> (Thumb, 262 bytes, Stack size 152 bytes, gizwits_product.o(i.my_eventprocess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = my_eventprocess &rArr; HW_Send_Data &rArr; u3_printf &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
@@ -1485,7 +1485,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[db]"></a>userInit</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, gizwits_product.o(i.userInit))
+<P><STRONG><a name="[db]"></a>userInit</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, gizwits_product.o(i.userInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = userInit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -1505,7 +1505,7 @@ Local Symbols
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IR_Learn_Pack
 </UL>
 
-<P><STRONG><a name="[ad]"></a>gizCheckReport</STRONG> (Thumb, 226 bytes, Stack size 32 bytes, gizwits_protocol.o(i.gizCheckReport))
+<P><STRONG><a name="[ad]"></a>gizCheckReport</STRONG> (Thumb, 276 bytes, Stack size 32 bytes, gizwits_protocol.o(i.gizCheckReport))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = gizCheckReport &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizGetTimerCount
@@ -1514,7 +1514,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizDevReportPolicy
 </UL>
 
-<P><STRONG><a name="[af]"></a>gizDataPoint2Event</STRONG> (Thumb, 182 bytes, Stack size 40 bytes, gizwits_protocol.o(i.gizDataPoint2Event))
+<P><STRONG><a name="[af]"></a>gizDataPoint2Event</STRONG> (Thumb, 230 bytes, Stack size 40 bytes, gizwits_protocol.o(i.gizDataPoint2Event))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = gizDataPoint2Event &rArr; gizVarlenDecompressionValue &rArr; gizByteOrderExchange
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizX2Y
@@ -1525,7 +1525,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizProtocolIssuedProcess
 </UL>
 
-<P><STRONG><a name="[b3]"></a>gizDataPoints2ReportData</STRONG> (Thumb, 240 bytes, Stack size 56 bytes, gizwits_protocol.o(i.gizDataPoints2ReportData))
+<P><STRONG><a name="[b3]"></a>gizDataPoints2ReportData</STRONG> (Thumb, 272 bytes, Stack size 56 bytes, gizwits_protocol.o(i.gizDataPoints2ReportData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = gizDataPoints2ReportData &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizY2X

@@ -39,5 +39,3 @@ stm32f103c8x\gizwits_product.o: ..\HARDWARE\LED\led.h
 stm32f103c8x\gizwits_product.o: ../Inc/gpio.h
 stm32f103c8x\gizwits_product.o: ..\HARDWARE\HONGWAI\hongwai.h
 stm32f103c8x\gizwits_product.o: ../Inc/usart.h
-stm32f103c8x\gizwits_product.o: ..\SYSTEM\delay\delay.h
-stm32f103c8x\gizwits_product.o: ..\SYSTEM\sys\sys.h

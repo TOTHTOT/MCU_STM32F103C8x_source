@@ -144,7 +144,7 @@ int main(void)
         if (loop_times % 100 == 0)
         {
             LED0_TOGGLE; //每500ms led 闪烁一次
-            // printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);
+            printf("温度:%d,湿度:%d\r\n", currentDataPoint.valuewendu, currentDataPoint.valueshidu);
             loop_times = 0;
         }
         userHandle();
