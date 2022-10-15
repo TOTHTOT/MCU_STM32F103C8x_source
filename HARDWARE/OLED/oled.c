@@ -2,7 +2,7 @@
  * @Description: OLEDœ‘ æ
  * @Author: TOTHTOT
  * @Date: 2022-10-07 20:33:56
- * @LastEditTime: 2022-10-08 20:18:06
+ * @LastEditTime: 2022-10-15 16:30:15
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\OLED\oled.c
  */
@@ -378,7 +378,8 @@ void main_page(void)
     OLED_ShowString(64, 0, "SD:", 16);
     OLED_ShowString(0, 2, "MB:", 16);
     OLED_ShowString(64, 2, "FS:", 16);
-    OLED_ShowString(00, 4, "MS:", 16);
+    OLED_ShowString(0, 4, "MS:", 16);
+    OLED_ShowString(64, 4, "POWER:", 16);
 }
 extern dataPoint_t currentDataPoint;
 
@@ -388,7 +389,16 @@ void main_page_data()
     OLED_ShowNum(25+64, 0, currentDataPoint.valueshidu, 3, 16);
     OLED_ShowNum(25, 2, currentDataPoint.valuewemdu_kongzhi, 3, 16);
     OLED_ShowNum(25+64, 2, currentDataPoint.valuewindspeed, 3, 16);
-    OLED_ShowNum(25, 4, currentDataPoint.valuewindspeed, 3, 16);
+    OLED_ShowNum(25, 4, currentDataPoint.valuework_mod, 3, 16);
+    if(currentDataPoint.valuepower == 1)
+    {
+        // OLED_ShowNum(25+64, 4, currentDataPoint.valuepower, 3, 16);
+        OLED_ShowString(25+64+24, 4, "1", 16);
+    }
+    else
+    {
+        OLED_ShowString(25+64+24, 4, "0", 16);
+    }
     if(KT_run_state.run_mode==learn_mode)
     {
         OLED_ShowString(0, 6, "Learning...", 16);

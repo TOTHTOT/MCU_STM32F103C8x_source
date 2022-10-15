@@ -79,8 +79,7 @@ uint8_t buf[1024];
 const uint8_t TEXT_Buffer[] = {"STM32 FLASH TEST"};
 #define SIZE_BUF sizeof(TEXT_Buffer) //数组长度
 #define FLASH_SAVE_ADDR 0X08009000   //设置FLASH 保存地址(必须为偶数，且其值要大于本代码所占用FLASH的大小+0X08000000)
-#define KT_POWER_ON_FLASH_ADDR 0X08009000
-#define KT_POWER_OFF_FLASH_ADDR 0X08009800
+
 /* USER CODE END 0 */
 
 int main(void)
@@ -88,7 +87,7 @@ int main(void)
 
     /* USER CODE BEGIN 1 */
     uint16_t loop_times = 0, tt = 0, tt1 = 0;
-    ;
+    
     char hw_buf[1024];
     /* USER CODE END 1 */
 
@@ -128,8 +127,8 @@ int main(void)
     GIZWITS_LOG("MCU Init Success \n");
 
     DHT11_Init();
-    // OLED_Init();
-    // main_page();
+    OLED_Init();
+    main_page();
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -145,7 +144,7 @@ int main(void)
             DHT11_Read_Data(&currentDataPoint.valuewendu, &currentDataPoint.valueshidu);
 
             gizwitsHandle((dataPoint_t *)&currentDataPoint); //数据上报
-            // main_page_data();
+            main_page_data();
             // uartWrite("111\r\n", 5);
         }
         if (loop_times % 100 == 0)
@@ -330,6 +329,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     //  uint16_t buf_len;
     uint8_t hw_index;
+    uint16_t tt1 = 0;
     static u8 fs_flag = 0, mod_flag = 0, power_flag = 0, fs_dfault_flag = 1, mod_dfault_flag = 1;
     /* 按下"学习"按钮进入学习模式,按如下顺序学习:
     1.进入学习模式OLED显示"Learning"
@@ -369,18 +369,18 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         {
             if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
-                uint16_t tt1;
+/*                 uint16_t tt1;
                 STMFLASH_Read(KT_POWER_ON_FLASH_ADDR, &tt1, 2); // 读取长度
                 STMFLASH_Read(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
 
                 // u3_printf("\r\nbuflen:%d\r\n", tt1);
                 HW_Send_Data((uint8_t *)buf, tt1);
-                memset(buf, 0, sizeof(buf));
+                memset(buf, 0, sizeof(buf)); */
 
-                // hw_index = 1;
-                // KT_run_state.kt_temp--;
-                // currentDataPoint.valuewemdu_kongzhi--;
-                // HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
+                hw_index = 1;
+                KT_run_state.kt_temp--;
+                currentDataPoint.valuewemdu_kongzhi--;
+                HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
             }
             else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
             {
@@ -492,9 +492,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
             {
                 if (KT_run_state.kt_power == 0)
                 { 
-                    uint16_t tt1 = 0;
                     // 开机
-                     STMFLASH_Read(KT_POWER_ON_FLASH_ADDR, &tt1, 2); // 读取长度
+                    STMFLASH_Read(KT_POWER_ON_FLASH_ADDR, &tt1, 2); // 读取长度
                     STMFLASH_Read(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
 
                     // u3_printf("\r\nbuflen:%d\r\n", tt1);
@@ -506,6 +505,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
                 else if (KT_run_state.kt_power == 1)
                 {
                     // 关机
+                    STMFLASH_Read(KT_POWER_OFF_FLASH_ADDR, &tt1, 2); // 读取长度
+                    printf("\r\n***************buflen:%d***************\r\n", tt1);
+                    STMFLASH_Read(KT_POWER_OFF_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
+
+                    HW_Send_Data((uint8_t *)buf, tt1);
+                    memset(buf, 0, sizeof(buf));
+                    currentDataPoint.valuepower = 0;
+                    KT_run_state.kt_power = 0;
                     KT_run_state.kt_power = 0;
                     currentDataPoint.valuepower = 0;
                 }
@@ -542,6 +549,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
             else if (KT_run_state.run_mode == learn_mode)
             {
                 KT_run_state.run_mode = default_mode;
+                HW_Send_Data(inside_exit_learn_code, 8);
                 printf("默认模式\r\n");
             }
             // main_page_data();
