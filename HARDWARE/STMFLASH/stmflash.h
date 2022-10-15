@@ -2,7 +2,7 @@
  * @Description: stm32 FLAS模拟EEPROM
  * @Author: TOTHTOT
  * @Date: 2022-10-12 11:38:14
- * @LastEditTime: 2022-10-12 12:17:39
+ * @LastEditTime: 2022-10-15 17:15:59
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\STMFLASH\stmflash.h
  */
@@ -16,7 +16,8 @@
 #define STM32_FLASH_WREN 	1              	//使能FLASH写入(0，不是能;1，使能)
 #define FLASH_WAITETIME  	50000          	//FLASH等待超时时间
 #define KT_POWER_ON_FLASH_ADDR 0X08009000
-#define KT_POWER_OFF_FLASH_ADDR 0X08009300
+#define KT_POWER_OFF_FLASH_ADDR 0X08009800
+#define KT_READ_MAX_LENTH 512   // 读取 flash 的最大长度,超出会造成卡死
 //FLASH起始地址
 #define STM32_FLASH_BASE 0x08000000 		//STM32 FLASH的起始地址
 

@@ -42,3 +42,4 @@ stm32f103c8x\gizwits_product.o: ../Inc/usart.h
 stm32f103c8x\gizwits_product.o: ..\HARDWARE\STMFLASH\stmflash.h
 stm32f103c8x\gizwits_product.o: ..\SYSTEM\delay\delay.h
 stm32f103c8x\gizwits_product.o: ..\SYSTEM\sys\sys.h
+stm32f103c8x\gizwits_product.o: ..\HARDWARE\OLED\oled.h

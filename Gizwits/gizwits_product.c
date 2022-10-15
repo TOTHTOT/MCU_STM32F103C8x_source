@@ -22,7 +22,7 @@
 #include "led.h"
 #include "hongwai.h"
 #include "stmflash.h"
-
+#include "oled.h"
 static uint32_t timerMsCount;
 uint8_t aRxBuffer;
 uint8_t aRxBuffer_1;
@@ -77,7 +77,7 @@ void my_eventprocess(EVENT_TYPE_T event_type)
         }
         break;
     case EVENT_work_mod: //工作模式选择,制冷(0)或者制热(1)
-        if (currentDataPoint.valuework_mod == 0 )
+        if (currentDataPoint.valuework_mod == 0)
         {
             hw_index = 5;
             HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
@@ -127,6 +127,12 @@ void my_eventprocess(EVENT_TYPE_T event_type)
         {
             // 关机
             STMFLASH_Read(KT_POWER_OFF_FLASH_ADDR, &tt1, 2); // 读取长度
+            if (tt1 > KT_READ_MAX_LENTH)
+            {
+                tt1 = 512;
+                OLED_Clear();
+                OLED_ShowString(0, 0, "Error:read lenth to big!!", 8);
+            }
             printf("\r\n***************buflen:%d***************\r\n", tt1);
             STMFLASH_Read(KT_POWER_OFF_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
 
@@ -142,6 +148,12 @@ void my_eventprocess(EVENT_TYPE_T event_type)
         {
             // 开机
             STMFLASH_Read(KT_POWER_ON_FLASH_ADDR, &tt1, 2); // 读取长度
+            if (tt1 > KT_READ_MAX_LENTH)
+            {
+                tt1 = 512;
+                OLED_Clear();
+                OLED_ShowString(0, 0, "Error:read lenth to big!!", 8);
+            }
             STMFLASH_Read(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
 
             // u3_printf("\r\nbuflen:%d\r\n", tt1);
@@ -473,7 +485,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
     else if (UartHandle->Instance == USART3)
     {
         usart_send_state = EN_U3SEND;
-        // u3_printf("%x ", aRxBuffer_3);
         if (KT_run_state.learn_outer != 0) // 开启外部学习模式时将数据储存到 FLASH
         {
             if (aRxBuffer_3 == 0x68) // 起始符
@@ -482,7 +493,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
                 i = 0;
                 receive_buf[i] = aRxBuffer_3;
                 i++;
-                // u3_printf("%d%d\r\n", head_flag,KT_run_state.learn_outer);
             }
             else if (aRxBuffer_3 == 0x16 && head_flag == 2)
             {
@@ -491,7 +501,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
                 if (KT_run_state.learn_outer == 1) // 学习开机
                 {
                     printf("\r\n************save data len:%d************\r\n", i);
-                    u3_printf("\r\n************save data len:%d************\r\n", i);
+                    // u3_printf("\r\n************save data len:%d************\r\n", i);
                     STMFLASH_Write(KT_POWER_ON_FLASH_ADDR, &i, 2);
                     STMFLASH_Write(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)receive_buf, i);
                     // u3_printf("\r\nbuf:\r\n");
@@ -503,8 +513,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
                 else if (KT_run_state.learn_outer == 2) // 学习关机
                 {
                     printf("\r\n************save data len:%d************\r\n", i);
-                    u3_printf("\r\n************save data len:%d************\r\n", i);
-                    STMFLASH_Write(KT_POWER_OFF_FLASH_ADDR, (uint16_t *)receive_buf, i);
+                    // u3_printf("\r\n************save data len:%d************\r\n", i);
+                   STMFLASH_Write(KT_POWER_OFF_FLASH_ADDR, &i, 2);
+                    STMFLASH_Write(KT_POWER_OFF_FLASH_ADDR + 2, (uint16_t *)receive_buf, i);
                     i = 0;
                     head_flag = 0;
                     memset(receive_buf, 0, sizeof(receive_buf));

@@ -87,7 +87,7 @@ int main(void)
 
     /* USER CODE BEGIN 1 */
     uint16_t loop_times = 0, tt = 0, tt1 = 0;
-    
+
     char hw_buf[1024];
     /* USER CODE END 1 */
 
@@ -369,13 +369,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         {
             if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
-/*                 uint16_t tt1;
-                STMFLASH_Read(KT_POWER_ON_FLASH_ADDR, &tt1, 2); // 读取长度
-                STMFLASH_Read(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
+                /*                 uint16_t tt1;
+                                STMFLASH_Read(KT_POWER_ON_FLASH_ADDR, &tt1, 2); // 读取长度
+                                STMFLASH_Read(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
 
-                // u3_printf("\r\nbuflen:%d\r\n", tt1);
-                HW_Send_Data((uint8_t *)buf, tt1);
-                memset(buf, 0, sizeof(buf)); */
+                                // u3_printf("\r\nbuflen:%d\r\n", tt1);
+                                HW_Send_Data((uint8_t *)buf, tt1);
+                                memset(buf, 0, sizeof(buf)); */
 
                 hw_index = 1;
                 KT_run_state.kt_temp--;
@@ -491,12 +491,18 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
             if (KT_run_state.run_mode == default_mode) // 默认模式
             {
                 if (KT_run_state.kt_power == 0)
-                { 
+                {
                     // 开机
                     STMFLASH_Read(KT_POWER_ON_FLASH_ADDR, &tt1, 2); // 读取长度
+                    if (tt1 > KT_READ_MAX_LENTH)
+                    {
+                        OLED_Clear();
+                        OLED_ShowString(0, 0, "Error:read lenth to big!!", 8);
+                        tt1 = 512;
+                    }
                     STMFLASH_Read(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
 
-                    // u3_printf("\r\nbuflen:%d\r\n", tt1);
+                    printf("\r\n***************buflen:%d***************\r\n", tt1);
                     HW_Send_Data((uint8_t *)buf, tt1);
                     memset(buf, 0, sizeof(buf));
                     currentDataPoint.valuepower = 1;
@@ -506,6 +512,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
                 {
                     // 关机
                     STMFLASH_Read(KT_POWER_OFF_FLASH_ADDR, &tt1, 2); // 读取长度
+                    if (tt1 > KT_READ_MAX_LENTH)
+                    {
+                        OLED_Clear();
+                        OLED_ShowString(0, 0, "Error:read lenth to big!!", 8);
+                        tt1 = 512;
+                    }
                     printf("\r\n***************buflen:%d***************\r\n", tt1);
                     STMFLASH_Read(KT_POWER_OFF_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
 
