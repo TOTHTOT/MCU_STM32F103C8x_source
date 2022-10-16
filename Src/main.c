@@ -86,7 +86,7 @@ int main(void)
 {
 
     /* USER CODE BEGIN 1 */
-    uint16_t loop_times = 0, tt = 0, tt1 = 0;
+    uint16_t loop_times = 0, tt1 = 0;
 
     char hw_buf[1024];
     /* USER CODE END 1 */
@@ -125,9 +125,13 @@ int main(void)
     userInit();
     gizwitsInit();
     GIZWITS_LOG("MCU Init Success \n");
-
-    DHT11_Init();
     OLED_Init();
+    OLED_Clear();
+    OLED_ShowString(0, 0, "check dht11...", 16);
+    DHT11_Init();
+    OLED_Clear();
+    OLED_ShowString(0, 0, "check onilne  ", 16);
+    delay_ms(300);
     main_page();
     /* USER CODE END 2 */
 
@@ -220,12 +224,12 @@ int main(void)
                 else if (strcmp((char *)USART1_RX_BUF, "learn_poweron") == 0)
                 {
                     HW_Send_Data((uint8_t *)hw_buf, IR_Learn_Outer_Pack((uint8_t *)hw_buf));
-                    KT_run_state.learn_outer = 1;
+                    KT_run_state.learn_outer = learn_on;
                 }
                 else if (strcmp((char *)USART1_RX_BUF, "learn_poweroff") == 0)
                 {
                     HW_Send_Data((uint8_t *)hw_buf, IR_Learn_Outer_Pack((uint8_t *)hw_buf));
-                    KT_run_state.learn_outer = 2;
+                    KT_run_state.learn_outer = learn_off;
                 }
                 else if (strcmp((char *)USART1_RX_BUF, "send_poweron") == 0)
                 {
@@ -329,6 +333,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     //  uint16_t buf_len;
     uint8_t hw_index;
+    char t_t = 0; // 温差
     uint16_t tt1 = 0;
     static u8 fs_flag = 0, mod_flag = 0, power_flag = 0, fs_dfault_flag = 1, mod_dfault_flag = 1;
     /* 按下"学习"按钮进入学习模式,按如下顺序学习:
@@ -352,14 +357,39 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
             {
                 hw_index = 0;
                 KT_run_state.kt_temp++;
-                currentDataPoint.valuewemdu_kongzhi++;
-                HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
+                if (KT_run_state.kt_temp > KT_TEMP_MAX)
+                {
+                    KT_run_state.kt_temp = KT_TEMP_MAX;
+                    currentDataPoint.valuewemdu_kongzhi = KT_TEMP_MAX;
+                }
+                currentDataPoint.valuewemdu_kongzhi = KT_run_state.kt_temp; // 同步到云端
+                t_t = KT_run_state.kt_temp - KT_TEMP_MIN;
+
+                // 增加温度
+                STMFLASH_Read(KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * t_t), &tt1, 2); // 读取长度
+                if (tt1 > KT_READ_MAX_LENTH)
+                {
+                    OLED_Clear();
+                    OLED_ShowString(0, 0, "Error:read lenth to big!!", 8);
+                    tt1 = 512;
+                }
+                STMFLASH_Read(KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * t_t) + 2, (uint16_t *)buf, tt1);
+
+                printf("\r\n***************buflen:%d***************\r\n", tt1);
+                HW_Send_Data((uint8_t *)buf, tt1);
+                memset(buf, 0, sizeof(buf));
             }
-            else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
+            else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器,从二十度开始学习
             {
                 hw_index = 0;
                 printf("学习增温\r\n");
-                HW_Send_Data((uint8_t *)buf, IR_Learn_Pack(buf, hw_index));
+                HW_Send_Data((uint8_t *)buf, IR_Learn_Outer_Pack((uint8_t *)buf));
+                KT_run_state.learn_outer = learn_temp;
+                KT_run_state.learn_temp_flag++;
+                if(KT_run_state.learn_temp_flag > KT_TEMP_DATA_NUM)
+                {
+                    KT_run_state.learn_temp_flag = KT_TEMP_DATA_NUM;
+                }
             }
         }
         break;
@@ -369,24 +399,36 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         {
             if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
-                /*                 uint16_t tt1;
-                                STMFLASH_Read(KT_POWER_ON_FLASH_ADDR, &tt1, 2); // 读取长度
-                                STMFLASH_Read(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)buf, tt1);
-
-                                // u3_printf("\r\nbuflen:%d\r\n", tt1);
-                                HW_Send_Data((uint8_t *)buf, tt1);
-                                memset(buf, 0, sizeof(buf)); */
-
                 hw_index = 1;
                 KT_run_state.kt_temp--;
-                currentDataPoint.valuewemdu_kongzhi--;
-                HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
+                if (KT_run_state.kt_temp < KT_TEMP_MIN)
+                {
+                    printf("1212\r\n");
+                    KT_run_state.kt_temp = KT_TEMP_MIN;
+                    currentDataPoint.valuewemdu_kongzhi = KT_TEMP_MIN;
+                }
+                currentDataPoint.valuewemdu_kongzhi = KT_run_state.kt_temp; // 同步到云端
+                t_t = KT_run_state.kt_temp - KT_TEMP_MIN;
+
+                // 增加温度
+                STMFLASH_Read(KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * t_t), &tt1, 2); // 读取长度
+                if (tt1 > KT_READ_MAX_LENTH)
+                {
+                    OLED_Clear();
+                    OLED_ShowString(0, 0, "Error:read lenth to big!!", 8);
+                    tt1 = 512;
+                }
+                STMFLASH_Read(KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * t_t) + 2, (uint16_t *)buf, tt1);
+
+                printf("\r\n***************buflen:%d***************\r\n", tt1);
+                HW_Send_Data((uint8_t *)buf, tt1);
+                memset(buf, 0, sizeof(buf));
             }
             else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
             {
-                hw_index = 1;
-                printf("学习降温\r\n");
-                HW_Send_Data((uint8_t *)buf, IR_Learn_Pack(buf, hw_index));
+                // hw_index = 1;
+                printf("学习降温(没用)\r\n");
+                // HW_Send_Data((uint8_t *)buf, IR_Learn_Pack(buf, hw_index));
             }
         }
         break;
@@ -535,14 +577,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
                 {
                     printf("学习开机\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Outer_Pack((uint8_t *)buf));
-                    KT_run_state.learn_outer = 1;
+                    KT_run_state.learn_outer = learn_on;
                     power_flag = 1;
                 }
                 else if (power_flag == 1)
                 {
                     printf("学习关机\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Outer_Pack((uint8_t *)buf));
-                    KT_run_state.learn_outer = 2;
+                    KT_run_state.learn_outer = learn_off;
                     power_flag = 0;
                 }
             }

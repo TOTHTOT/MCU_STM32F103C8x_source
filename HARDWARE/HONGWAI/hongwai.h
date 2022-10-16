@@ -2,7 +2,7 @@
  * @Description: 红外模块驱动
  * @Author: TOTHTOT
  * @Date: 2022-10-07 20:35:44
- * @LastEditTime: 2022-10-12 17:53:57
+ * @LastEditTime: 2022-10-16 16:24:37
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\HONGWAI\hongwai.h
  */
@@ -35,14 +35,23 @@ typedef enum
     warm
 }WorkMode_Handle;
 
+typedef enum
+{
+    learn_default,
+    learn_on,
+    learn_off,
+    learn_temp,
+    all_learn_type
+}Outer_Learn_Handel;    // 外部学习标志 
 typedef struct 
 {
-	WorkMode_Handle workmod;
     WindSpeed_Handle windspeed;
+	WorkMode_Handle workmod;
     State_Handle run_mode;
     uint8_t kt_power;
     char kt_temp;
-    uint8_t learn_outer;
+    int learn_temp_flag;
+    Outer_Learn_Handel learn_outer;
 }KT_State_Handle;
 extern KT_State_Handle KT_run_state;
 

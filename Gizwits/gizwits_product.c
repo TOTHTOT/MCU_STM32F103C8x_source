@@ -53,10 +53,10 @@ uint8_t usart_send_state = DIS_USEND;
  */
 void my_eventprocess(EVENT_TYPE_T event_type)
 {
-    uint8_t buf[128];
+    uint8_t buf[1024];
     uint8_t hw_index;
     uint16_t tt1 = 0;
-    char i = 0;
+    char t_t = 0;
     switch (event_type)
     {
     case EVENT_windspeed:
@@ -88,39 +88,33 @@ void my_eventprocess(EVENT_TYPE_T event_type)
             HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
         }
         break;
-    case EVENT_wemdu_kongzhi: // 根据温度相差的度数决定发送编码的次数
-        if (currentDataPoint.valuewemdu_kongzhi > KT_run_state.kt_temp)
-        { //目标温度大于空调现在温度, 相当于按下"温度增加"
-            i = currentDataPoint.valuewemdu_kongzhi - KT_run_state.kt_temp;
-            printf("\r\n************UP, kt_temp:%d, kz_temp:%d*************\r\n", KT_run_state.kt_temp, currentDataPoint.valuewemdu_kongzhi);
-            for (; i > 0; i--)
-            {
-                hw_index = 0;
-                KT_run_state.kt_temp++;
-                HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
-                // printf("i等于:%d\r\n", i);
-                printf("\r\n*********i===:%d************\r\n", i);
-                delay_ms(500);
-            }
-            KT_run_state.kt_temp = currentDataPoint.valuewemdu_kongzhi;
-            printf("\r\n************UP, kt_temp:%d, kz_temp:%d*************\r\n", KT_run_state.kt_temp, currentDataPoint.valuewemdu_kongzhi);
+    case EVENT_wemdu_kongzhi: // 根据温度发送相关的温度指令 20到30度
+        KT_run_state.kt_temp = currentDataPoint.valuewemdu_kongzhi;
+        if (KT_run_state.kt_temp > KT_TEMP_MAX)
+        {
+            KT_run_state.kt_temp = KT_TEMP_MAX;
+            currentDataPoint.valuewemdu_kongzhi = KT_TEMP_MAX;
         }
-        else if (currentDataPoint.valuewemdu_kongzhi < KT_run_state.kt_temp)
-        { //目标温度小于空调现在温度, 相当于按下"温度降低"
-            printf("\r\n************DOWM*************\r\n");
-            i = KT_run_state.kt_temp - currentDataPoint.valuewemdu_kongzhi;
-            printf("\r\n*********i===:%d, kt_temp:%d, kz_temp:%d************\r\n", i, KT_run_state.kt_temp, currentDataPoint.valuewemdu_kongzhi);
-            for (; i > 0; i--)
-            {
-                printf("\r\n*********i===:%d************\r\n", i);
-                hw_index = 1;
-                KT_run_state.kt_temp--;
-                HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
-                delay_ms(500);
-            }
-            KT_run_state.kt_temp = currentDataPoint.valuewemdu_kongzhi;
-            printf("\r\n*********i===:%d, kt_temp:%d, kz_temp:%d************\r\n", i, KT_run_state.kt_temp, currentDataPoint.valuewemdu_kongzhi);
+        else if (KT_run_state.kt_temp < KT_TEMP_MIN)
+        {
+            KT_run_state.kt_temp = KT_TEMP_MIN;
+            currentDataPoint.valuewemdu_kongzhi = KT_TEMP_MIN;
         }
+        t_t = KT_run_state.kt_temp - KT_TEMP_MIN;
+
+        // 增加控制
+        STMFLASH_Read(KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * t_t), &tt1, 2); // 读取长度
+        if (tt1 > KT_READ_MAX_LENTH)
+        {
+            OLED_Clear();
+            OLED_ShowString(0, 0, "Error:read lenth to big!!", 8);
+            tt1 = 512;
+        }
+        STMFLASH_Read(KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * t_t) + 2, (uint16_t *)buf, 99);
+
+        printf("\r\n***************buflen:%d, temp:%d, add:0x%x***************\r\n", tt1, t_t + 20, (KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * t_t) + 2));
+        HW_Send_Data((uint8_t *)buf, tt1);
+        memset(buf, 0, sizeof(buf));
         break;
     case EVENT_power:
         if (currentDataPoint.valuepower == 0)
@@ -374,7 +368,7 @@ void userInit(void)
     currentDataPoint.valuewindspeed = 0;
     currentDataPoint.valuework_mod = 0;
     currentDataPoint.valuewendu = 0;
-    currentDataPoint.valuewemdu_kongzhi = 25;
+    currentDataPoint.valuewemdu_kongzhi = 26;
     currentDataPoint.valueshidu = 0;
 }
 
@@ -498,24 +492,37 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
             {
                 receive_buf[i] = aRxBuffer_3;
                 i++;
-                if (KT_run_state.learn_outer == 1) // 学习开机
+                if (KT_run_state.learn_outer == learn_on) // 学习开机
                 {
                     printf("\r\n************save data len:%d************\r\n", i);
-                    // u3_printf("\r\n************save data len:%d************\r\n", i);
                     STMFLASH_Write(KT_POWER_ON_FLASH_ADDR, &i, 2);
                     STMFLASH_Write(KT_POWER_ON_FLASH_ADDR + 2, (uint16_t *)receive_buf, i);
-                    // u3_printf("\r\nbuf:\r\n");
-                    // HW_Send_Data(receive_buf, i);
                     i = 0;
                     head_flag = 0;
                     memset(receive_buf, 0, sizeof(receive_buf));
                 }
-                else if (KT_run_state.learn_outer == 2) // 学习关机
+                else if (KT_run_state.learn_outer == learn_off) // 学习关机
                 {
                     printf("\r\n************save data len:%d************\r\n", i);
-                    // u3_printf("\r\n************save data len:%d************\r\n", i);
-                   STMFLASH_Write(KT_POWER_OFF_FLASH_ADDR, &i, 2);
+                    STMFLASH_Write(KT_POWER_OFF_FLASH_ADDR, &i, 2);
                     STMFLASH_Write(KT_POWER_OFF_FLASH_ADDR + 2, (uint16_t *)receive_buf, i);
+                    i = 0;
+                    head_flag = 0;
+                    memset(receive_buf, 0, sizeof(receive_buf));
+                }
+                else if (KT_run_state.learn_outer == learn_temp) //学习温度
+                {
+                    i++;
+                    receive_buf[i] = KT_run_state.learn_temp_flag + 20;
+                    i--;
+                    printf("\r\n************save data len:%d************\r\n", i);
+                    STMFLASH_Write(KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * KT_run_state.learn_temp_flag), &i, 2);
+                    STMFLASH_Write(KT_TEMP_20_FLASH_ADDR + (KT_TEMP_ADDER_INCREASE * KT_run_state.learn_temp_flag) + 2, (uint16_t *)receive_buf, i);
+                    if (KT_run_state.learn_temp_flag == KT_TEMP_DATA_NUM) // 学习完成时
+                    {
+                        printf("learn temp success\r\n");
+                        KT_run_state.learn_temp_flag = -1;
+                    }
                     i = 0;
                     head_flag = 0;
                     memset(receive_buf, 0, sizeof(receive_buf));
@@ -524,7 +531,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
                 {
                     u3_printf("unknow\r\n");
                 }
-                KT_run_state.learn_outer = 0;
+                KT_run_state.learn_outer = learn_default;
             }
             else
             {
