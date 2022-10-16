@@ -63,16 +63,22 @@ void my_eventprocess(EVENT_TYPE_T event_type)
         if (currentDataPoint.valuewindspeed == 0)
         {
             hw_index = 2;
+            KT_run_state.fs_dfault_flag = 1;
+            KT_run_state.windspeed = low;
             HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
         }
         else if (currentDataPoint.valuewindspeed == 1)
         {
             hw_index = 3;
+            KT_run_state.fs_dfault_flag = 2;
+            KT_run_state.windspeed = mid;
             HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
         }
         else if (currentDataPoint.valuewindspeed == 2)
         {
             hw_index = 4;
+            KT_run_state.fs_dfault_flag = 0;
+            KT_run_state.windspeed = high;
             HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
         }
         break;
@@ -80,11 +86,15 @@ void my_eventprocess(EVENT_TYPE_T event_type)
         if (currentDataPoint.valuework_mod == 0)
         {
             hw_index = 5;
+            KT_run_state.mod_dfault_flag = 1;
+            KT_run_state.workmod = cool;
             HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
         }
         else if (currentDataPoint.valuework_mod == 1)
         {
             hw_index = 6;
+            KT_run_state.mod_dfault_flag = 0;
+            KT_run_state.workmod = warm;
             HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
         }
         break;

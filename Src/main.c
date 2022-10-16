@@ -335,7 +335,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     uint8_t hw_index;
     char t_t = 0; // 温差
     uint16_t tt1 = 0;
-    static u8 fs_flag = 0, mod_flag = 0, power_flag = 0, fs_dfault_flag = 1, mod_dfault_flag = 1;
+    // static u8 fs_flag = 0, mod_flag = 0, power_flag = 0, fs_dfault_flag = 1, mod_dfault_flag = 1;
     /* 按下"学习"按钮进入学习模式,按如下顺序学习:
     1.进入学习模式OLED显示"Learning"
     2.按下"温度增加"红外模块绿灯亮起,空调遥控器对准孔外接收管,按下对应按键,红外模块LED熄灭表示学习完成;
@@ -386,7 +386,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
                 HW_Send_Data((uint8_t *)buf, IR_Learn_Outer_Pack((uint8_t *)buf));
                 KT_run_state.learn_outer = learn_temp;
                 KT_run_state.learn_temp_flag++;
-                if(KT_run_state.learn_temp_flag > KT_TEMP_DATA_NUM)
+                if (KT_run_state.learn_temp_flag > KT_TEMP_DATA_NUM)
                 {
                     KT_run_state.learn_temp_flag = KT_TEMP_DATA_NUM;
                 }
@@ -438,48 +438,51 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         {
             if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
-                if (fs_dfault_flag == 0) //等于0 发送一档风速
+                if (KT_run_state.fs_dfault_flag == 0) //等于0 发送一档风速
                 {
                     hw_index = 2;
-                    fs_dfault_flag = 1;
+                    KT_run_state.fs_dfault_flag = 1;
+                    KT_run_state.windspeed = low;
                     currentDataPoint.valuewindspeed = 0;
                     HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
                 }
-                else if (fs_dfault_flag == 1) //等于1 发送二档风速
+                else if (KT_run_state.fs_dfault_flag == 1) //等于1 发送二档风速
                 {
                     hw_index = 3;
-                    fs_dfault_flag = 2;
+                    KT_run_state.fs_dfault_flag = 2;
+                    KT_run_state.windspeed = mid;
                     currentDataPoint.valuewindspeed = 1;
                     HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
                 }
-                else if (fs_dfault_flag == 2) //等于2 发送三档风速
+                else if (KT_run_state.fs_dfault_flag == 2) //等于2 发送三档风速
                 {
                     hw_index = 4;
-                    fs_dfault_flag = 0;
+                    KT_run_state.fs_dfault_flag = 0;
+                    KT_run_state.windspeed = high;
                     currentDataPoint.valuewindspeed = 2;
                     HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
                 }
             }
             else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
             {
-                if (fs_flag == 0) // 等于0 学习一档风速
+                if (KT_run_state.fs_flag == 0) // 等于0 学习一档风速
                 {
                     hw_index = 2;
-                    fs_flag = 1;
+                    KT_run_state.fs_flag = 1;
                     printf("学习一档风速\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Pack(buf, hw_index));
                 }
-                else if (fs_flag == 1) // 等于1 学习二档风速
+                else if (KT_run_state.fs_flag == 1) // 等于1 学习二档风速
                 {
                     hw_index = 3;
-                    fs_flag = 2;
+                    KT_run_state.fs_flag = 2;
                     printf("学习二档风速\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Pack(buf, hw_index));
                 }
-                else if (fs_flag == 2) // 等于2 学习三档风速
+                else if (KT_run_state.fs_flag == 2) // 等于2 学习三档风速
                 {
                     hw_index = 4;
-                    fs_flag = 0;
+                    KT_run_state.fs_flag = 0;
                     printf("学习三档风速\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Pack(buf, hw_index));
                 }
@@ -492,34 +495,35 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         {
             if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
-                if (mod_dfault_flag == 0)
+                if (KT_run_state.mod_dfault_flag == 0)
                 {
                     hw_index = 5;
+                    KT_run_state.workmod = cool;
                     currentDataPoint.valuework_mod = 0;
                     HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
-                    mod_dfault_flag = 1;
+                    KT_run_state.mod_dfault_flag = 1;
                 }
-                else if (mod_dfault_flag == 1)
+                else if (KT_run_state.mod_dfault_flag == 1)
                 {
                     hw_index = 6;
                     currentDataPoint.valuework_mod = 1;
                     HW_Send_Data((uint8_t *)buf, IR_Send_Pack(buf, hw_index));
-                    mod_dfault_flag = 0;
+                    KT_run_state.mod_dfault_flag = 0;
                 }
             }
             else if (KT_run_state.run_mode == learn_mode) //学习模式,按下开始学习遥控器
             {
-                if (mod_flag == 0) // 等于0 学习制冷模式
+                if (KT_run_state.mod_flag == 0) // 等于0 学习制冷模式
                 {
                     hw_index = 5;
-                    mod_flag = 1;
+                    KT_run_state.mod_flag = 1;
                     printf("学习制冷\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Pack(buf, hw_index));
                 }
-                else if (mod_flag == 1) // 等于1 学习制暖模式
+                else if (KT_run_state.mod_flag == 1) // 等于1 学习制暖模式
                 {
                     hw_index = 6;
-                    mod_flag = 0;
+                    KT_run_state.mod_flag = 0;
                     printf("学习制暖\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Pack(buf, hw_index));
                 }
@@ -573,19 +577,19 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
             }
             else if (KT_run_state.run_mode == learn_mode)
             {
-                if (power_flag == 0) // 学习开机
+                if (KT_run_state.power_flag == 0) // 学习开机
                 {
                     printf("学习开机\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Outer_Pack((uint8_t *)buf));
                     KT_run_state.learn_outer = learn_on;
-                    power_flag = 1;
+                    KT_run_state.power_flag = 1;
                 }
-                else if (power_flag == 1)
+                else if (KT_run_state.power_flag == 1)
                 {
                     printf("学习关机\r\n");
                     HW_Send_Data((uint8_t *)buf, IR_Learn_Outer_Pack((uint8_t *)buf));
                     KT_run_state.learn_outer = learn_off;
-                    power_flag = 0;
+                    KT_run_state.power_flag = 0;
                 }
             }
         }
