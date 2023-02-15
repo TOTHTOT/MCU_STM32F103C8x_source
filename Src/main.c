@@ -134,7 +134,8 @@ int main(void)
     delay_ms(300);
     main_page();
     /* USER CODE END 2 */
-
+    gizwitsHandle((dataPoint_t *)&currentDataPoint); //数据上报
+    gizwitsHandle((dataPoint_t *)&currentDataPoint); //数据上报
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1)
@@ -361,7 +362,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
                 if (KT_run_state.kt_temp > KT_TEMP_MAX)
                 {
                     KT_run_state.kt_temp = KT_TEMP_MAX;
-                    currentDataPoint.valuewemdu_kongzhi = KT_TEMP_MAX;
                 }
                 currentDataPoint.valuewemdu_kongzhi = KT_run_state.kt_temp; // 同步到云端
                 t_t = KT_run_state.kt_temp - KT_TEMP_MIN;
@@ -407,7 +407,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
                 {
                     printf("1212\r\n");
                     KT_run_state.kt_temp = KT_TEMP_MIN;
-                    currentDataPoint.valuewemdu_kongzhi = KT_TEMP_MIN;
                 }
                 currentDataPoint.valuewemdu_kongzhi = KT_run_state.kt_temp; // 同步到云端
                 t_t = KT_run_state.kt_temp - KT_TEMP_MIN;

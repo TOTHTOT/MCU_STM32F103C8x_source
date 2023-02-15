@@ -1399,7 +1399,7 @@ int32_t gizwitsHandle(dataPoint_t *currentData)
         GIZWITS_LOG("GizwitsHandle Error , Illegal Param\n");
         return -1;
     }
-
+    printf("\r\ngizwitsHandle() :%d\r\n", currentData->valuewemdu_kongzhi);
     /*resend strategy*/
     gizProtocolAckHandle();
     ret = gizProtocolGetOnePacket(&pRb, gizwitsProtocol.protocolBuf, &protocolLen);

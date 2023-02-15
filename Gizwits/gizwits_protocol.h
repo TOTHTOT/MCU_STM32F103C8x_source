@@ -85,9 +85,9 @@ extern "C" {
 #define wendu_MAX                           120
 #define wendu_LEN                           1
 #define wemdu_kongzhi_RATIO                         1
-#define wemdu_kongzhi_ADDITION                      16
+#define wemdu_kongzhi_ADDITION                      20
 #define wemdu_kongzhi_MIN                           0
-#define wemdu_kongzhi_MAX                           24
+#define wemdu_kongzhi_MAX                           30
 #define wemdu_kongzhi_LEN                           1
 #define shidu_RATIO                         1
 #define shidu_ADDITION                      0

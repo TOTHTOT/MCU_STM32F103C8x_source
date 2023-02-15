@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F103C8x\STM32F103C8x.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F103C8x\STM32F103C8x.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Feb 13 21:06:48 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 15 10:07:59 2023
 <BR><P>
 <H3>Maximum Stack Usage =       2440 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -540,7 +540,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
 
-<P><STRONG><a name="[61]"></a>HAL_GPIO_EXTI_Callback</STRONG> (Thumb, 976 bytes, Stack size 40 bytes, main.o(i.HAL_GPIO_EXTI_Callback))
+<P><STRONG><a name="[61]"></a>HAL_GPIO_EXTI_Callback</STRONG> (Thumb, 972 bytes, Stack size 40 bytes, main.o(i.HAL_GPIO_EXTI_Callback))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = HAL_GPIO_EXTI_Callback &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; Write_IIC_Data &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
@@ -1460,7 +1460,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizDataPoints2ReportData
 </UL>
 
-<P><STRONG><a name="[ee]"></a>gizwitsEventProcess</STRONG> (Thumb, 328 bytes, Stack size 40 bytes, gizwits_product.o(i.gizwitsEventProcess))
+<P><STRONG><a name="[ee]"></a>gizwitsEventProcess</STRONG> (Thumb, 322 bytes, Stack size 40 bytes, gizwits_product.o(i.gizwitsEventProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1304<LI>Call Chain = gizwitsEventProcess &rArr; my_eventprocess &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; Write_IIC_Data &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_eventprocess
@@ -1469,7 +1469,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizwitsHandle
 </UL>
 
-<P><STRONG><a name="[f0]"></a>gizwitsHandle</STRONG> (Thumb, 554 bytes, Stack size 104 bytes, gizwits_protocol.o(i.gizwitsHandle))
+<P><STRONG><a name="[f0]"></a>gizwitsHandle</STRONG> (Thumb, 564 bytes, Stack size 104 bytes, gizwits_protocol.o(i.gizwitsHandle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1408<LI>Call Chain = gizwitsHandle &rArr; gizwitsEventProcess &rArr; my_eventprocess &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; Write_IIC_Data &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizProtocolWaitAckCheck
@@ -1524,7 +1524,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 </UL>
 
-<P><STRONG><a name="[35]"></a>main</STRONG> (Thumb, 622 bytes, Stack size 1032 bytes, main.o(i.main))
+<P><STRONG><a name="[35]"></a>main</STRONG> (Thumb, 634 bytes, Stack size 1032 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 2440<LI>Call Chain = main &rArr; gizwitsHandle &rArr; gizwitsEventProcess &rArr; my_eventprocess &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; Write_IIC_Data &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInit
@@ -1589,7 +1589,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gizwitsHandle
 </UL>
 
-<P><STRONG><a name="[ef]"></a>my_eventprocess</STRONG> (Thumb, 444 bytes, Stack size 1056 bytes, gizwits_product.o(i.my_eventprocess))
+<P><STRONG><a name="[ef]"></a>my_eventprocess</STRONG> (Thumb, 440 bytes, Stack size 1056 bytes, gizwits_product.o(i.my_eventprocess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1264<LI>Call Chain = my_eventprocess &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; Write_IIC_Data &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Read

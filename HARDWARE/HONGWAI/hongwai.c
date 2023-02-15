@@ -2,7 +2,7 @@
  * @Description:
  * @Author: TOTHTOT
  * @Date: 2022-10-07 20:35:33
- * @LastEditTime: 2022-10-16 17:46:37
+ * @LastEditTime: 2023-02-15 09:41:23
  * @LastEditors: TOTHTOT
  * @FilePath: \MDK-ARMe:\JieDan\KongTiaoController\STM32\MCU_STM32F103C8x_source\HARDWARE\HONGWAI\hongwai.c
  */
@@ -14,7 +14,7 @@
 //  State_Handle run_states = default_mode;
 KT_State_Handle KT_run_state = {
     .kt_power = 0,
-    .kt_temp = 26,
+    .kt_temp = 20,
     .learn_outer = learn_default,
     .learn_temp_flag = -1,
     .run_mode = default_mode,

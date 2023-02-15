@@ -103,12 +103,10 @@ void my_eventprocess(EVENT_TYPE_T event_type)
         if (KT_run_state.kt_temp > KT_TEMP_MAX)
         {
             KT_run_state.kt_temp = KT_TEMP_MAX;
-            currentDataPoint.valuewemdu_kongzhi = KT_TEMP_MAX;
         }
         else if (KT_run_state.kt_temp < KT_TEMP_MIN)
         {
             KT_run_state.kt_temp = KT_TEMP_MIN;
-            currentDataPoint.valuewemdu_kongzhi = KT_TEMP_MIN;
         }
         t_t = KT_run_state.kt_temp - KT_TEMP_MIN;
 
@@ -276,10 +274,9 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             break;
 
         case EVENT_wemdu_kongzhi:
-            GIZWITS_LOG("1 Evt:EVENT_wemdu_kongzhi %d, %d\r\n", currentDataPoint.valuewemdu_kongzhi, dataPointPtr->valuewemdu_kongzhi);
+            GIZWITS_LOG("\r\n1 Evt:EVENT_wemdu_kongzhi %d, %d\r\n", currentDataPoint.valuewemdu_kongzhi, dataPointPtr->valuewemdu_kongzhi);
             currentDataPoint.valuewemdu_kongzhi = dataPointPtr->valuewemdu_kongzhi;
-            GIZWITS_LOG("2 Evt:EVENT_wemdu_kongzhi %d, %d\r\n", currentDataPoint.valuewemdu_kongzhi, dataPointPtr->valuewemdu_kongzhi);
-            printf("\r\n***********WorkMod Warm***********\r\n");
+            GIZWITS_LOG("\r\n2 Evt:EVENT_wemdu_kongzhi %d, %d\r\n", currentDataPoint.valuewemdu_kongzhi, dataPointPtr->valuewemdu_kongzhi);
             printf("\r\n***********WorkMod Warm***********\r\n");
             my_eventprocess(EVENT_wemdu_kongzhi);
             // user handle
@@ -386,6 +383,7 @@ void userInit(void)
     currentDataPoint.valuewendu = 0;
     currentDataPoint.valuewemdu_kongzhi = 20;
     currentDataPoint.valueshidu = 0;
+
 }
 
 /**
