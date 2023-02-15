@@ -353,6 +353,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         delay_ms(10);
         if (HAL_GPIO_ReadPin(wd_up_GPIO_Port, wd_up_Pin) == 0)
         {
+            printf("1 wendu:%d,%d\r\n",KT_run_state.kt_temp, currentDataPoint.valuewemdu_kongzhi);
             if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
                 hw_index = 0;
@@ -397,6 +398,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         delay_ms(10);
         if (HAL_GPIO_ReadPin(wd_down_GPIO_Port, wd_down_Pin) == 0)
         {
+            printf("2 wendu:%d,%d\r\n",KT_run_state.kt_temp, currentDataPoint.valuewemdu_kongzhi);
             if (KT_run_state.run_mode == default_mode) //默认工作模式
             {
                 hw_index = 1;
@@ -534,6 +536,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         delay_ms(10);
         if (HAL_GPIO_ReadPin(kt_power_GPIO_Port, kt_power_Pin) == 0)
         {
+            printf("power key press\r\n");
             if (KT_run_state.run_mode == default_mode) // 默认模式
             {
                 if (KT_run_state.kt_power == 0)

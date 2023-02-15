@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.30.0.0
 Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: qwe TOTHTOT, 11, LIC=HN0AE-5Y8MP-RATDM-XG5KQ-FZ8P8-V6WF7
+License Information: qwe TOTHTOT, 11, LIC=NQQMA-12DKR-Z97G9-47CHB-TS54R-9SYXI
  
 Tool Versions:
 Toolchain:       MDK-ARM Plus  Version: 5.30.0.0
@@ -27,11 +27,13 @@ Project File Date:  10/12/2022
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Keil Programma\ARM\ARMCC\Bin'
 Build target 'STM32F103C8x'
-compiling hongwai.c...
-compiling gizwits_product.c...
+compiling main.c...
+../Src/main.c(148): warning:  #167-D: argument of type "int32_t *" is incompatible with parameter of type "uint32_t *"
+              DHT11_Read_Data(&currentDataPoint.valuewendu, &currentDataPoint.valueshidu);
+../Src/main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=27164 RO-data=3516 RW-data=100 ZI-data=12244  
-"STM32F103C8x\STM32F103C8x.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=27336 RO-data=3516 RW-data=100 ZI-data=12244  
+"STM32F103C8x\STM32F103C8x.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 

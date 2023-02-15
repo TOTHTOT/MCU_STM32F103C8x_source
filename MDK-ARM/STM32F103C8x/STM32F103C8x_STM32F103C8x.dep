@@ -1,6 +1,6 @@
 Dependencies for Project 'STM32F103C8x', Target 'STM32F103C8x': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::.\ARMCC
-F (../Src/main.c)(0x634BD36F)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\main.o --depend stm32f103c8x\main.d)
+F (../Src/main.c)(0x63EA35E7)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\main.o --depend stm32f103c8x\main.d)
 I (../Inc/main.h)(0x634556F0)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x633A865A)
 I (../Inc/stm32f1xx_hal_conf.h)(0x634556F0)
@@ -9,7 +9,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -57,7 +57,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -86,7 +86,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -116,7 +116,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -145,7 +145,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -174,7 +174,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -203,7 +203,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -233,7 +233,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -263,7 +263,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -296,7 +296,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -327,7 +327,7 @@ I (E:\Keil Programma\ARM\ARMCC\include\ctype.h)(0x5E53505C)
 I (../Inc/i2c.h)(0x634556ED)
 I (..\HARDWARE\HONGWAI\hongwai.h)(0x634BD2C1)
 I (../Inc/usart.h)(0x634556EE)
-F (..\HARDWARE\HONGWAI\hongwai.c)(0x634BD3A2)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\hongwai.o --depend stm32f103c8x\hongwai.d)
+F (..\HARDWARE\HONGWAI\hongwai.c)(0x634BD4AB)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\hongwai.o --depend stm32f103c8x\hongwai.d)
 I (..\HARDWARE\HONGWAI\hongwai.h)(0x634BD2C1)
 I (../Inc/usart.h)(0x634556EE)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x633A865A)
@@ -338,7 +338,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -366,7 +366,7 @@ I (..\SYSTEM\sys\sys.h)(0x59254213)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -392,11 +392,11 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x633A865A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x633A865A)
 I (../Inc/usart.h)(0x634556EE)
 F (..\HARDWARE\STMFLASH\stmflash.h)(0x634BB734)()
-F (..\Gizwits\gizwits_product.c)(0x634BD440)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\gizwits_product.o --depend stm32f103c8x\gizwits_product.d)
+F (..\Gizwits\gizwits_product.c)(0x63EA345D)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\gizwits_product.o --depend stm32f103c8x\gizwits_product.d)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
 I (..\Hal\hal_key.h)(0x6035B654)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
@@ -438,7 +438,7 @@ I (..\SYSTEM\sys\sys.h)(0x59254213)
 I (..\HARDWARE\OLED\oled.h)(0x633AA70F)
 F (..\Gizwits\gizwits_protocol.c)(0x6345A870)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\gizwits_protocol.o --depend stm32f103c8x\gizwits_protocol.d)
 I (..\Utils\ringBuffer.h)(0x6035B654)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\stdlib.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
@@ -479,7 +479,7 @@ I (..\SYSTEM\sys\sys.h)(0x59254213)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -506,7 +506,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x633A865A)
 F (..\Hal\hal_key.c)(0x6035B654)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\hal_key.o --depend stm32f103c8x\hal_key.d)
 I (..\Hal\hal_key.h)(0x6035B654)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
@@ -535,7 +535,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x633A865A)
 I (E:\Keil Programma\ARM\ARMCC\include\math.h)(0x5E53505A)
 F (..\Utils\common.c)(0x6035B654)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\common.o --depend stm32f103c8x\common.d)
 I (..\Utils\common.h)(0x6035B654)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (E:\Keil Programma\ARM\ARMCC\include\stdbool.h)(0x62DFB555)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
@@ -543,7 +543,7 @@ I (E:\Keil Programma\ARM\ARMCC\include\ctype.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\stdlib.h)(0x5E53505C)
 F (..\Utils\dataPointTools.c)(0x6035B654)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\datapointtools.o --depend stm32f103c8x\datapointtools.d)
 I (..\Utils\dataPointTools.h)(0x6035B654)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\stdlib.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
@@ -552,7 +552,7 @@ I (E:\Keil Programma\ARM\ARMCC\include\stdbool.h)(0x62DFB555)
 I (E:\Keil Programma\ARM\ARMCC\include\ctype.h)(0x5E53505C)
 F (..\Utils\ringbuffer.c)(0x6035B654)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Gizwits -I ..\Hal -I ..\Utils -I ..\HARDWARE\DHT11 -I ..\HARDWARE\LED -I ..\HARDWARE\OLED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\HONGWAI -I ..\HARDWARE\STMFLASH --C99-I.\RTE\_STM32F103C8x-I"E:\Keil Programma\PACK\ARM\CMSIS\5.7.0\CMSIS\Core\Include"-I"E:\Keil Programma\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="530" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o stm32f103c8x\ringbuffer.o --depend stm32f103c8x\ringbuffer.d)
 I (..\Utils\ringBuffer.h)(0x6035B654)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (E:\Keil Programma\ARM\ARMCC\include\stdio.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\stdlib.h)(0x5E53505C)
 I (E:\Keil Programma\ARM\ARMCC\include\string.h)(0x5E53505C)
@@ -564,7 +564,7 @@ F (../Src/system_stm32f1xx.c)(0x6035B654)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -597,7 +597,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -625,7 +625,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -653,7 +653,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -681,7 +681,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -709,7 +709,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -737,7 +737,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -765,7 +765,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -793,7 +793,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -821,7 +821,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -849,7 +849,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -877,7 +877,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -905,7 +905,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -933,7 +933,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)
@@ -961,7 +961,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x633A865A)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x633A8657)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x633A8657)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x633A865A)
-I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x5E53505C)
+I (E:\Keil Programma\ARM\ARMCC\include\stdint.h)(0x63D9C13D)
 I (../Drivers/CMSIS/Include/core_cmInstr.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x633A865A)
 I (../Drivers/CMSIS/Include/core_cmFunc.h)(0x633A865A)

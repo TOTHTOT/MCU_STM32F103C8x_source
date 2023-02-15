@@ -211,8 +211,12 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         switch (info->event[i])
         {
         case EVENT_power:
+            if(dataPointPtr->valuepower < 20)
+                dataPointPtr->valuepower = 20;
+            else if(dataPointPtr->valuepower>30)
+                dataPointPtr->valuepower = 30;
             currentDataPoint.valuepower = dataPointPtr->valuepower;
-            GIZWITS_LOG("Evt: EVENT_power %d \n", currentDataPoint.valuepower);
+            GIZWITS_LOG("Evt: EVENT_power %d \r\n", currentDataPoint.valuepower);
             if (0x01 == currentDataPoint.valuepower)
             {
                 // user handle
@@ -229,7 +233,7 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
 
         case EVENT_windspeed:
             currentDataPoint.valuewindspeed = dataPointPtr->valuewindspeed;
-            GIZWITS_LOG("Evt: EVENT_windspeed %d\n", currentDataPoint.valuewindspeed);
+            GIZWITS_LOG("Evt: EVENT_windspeed %d\r\n", currentDataPoint.valuewindspeed);
             switch (currentDataPoint.valuewindspeed)
             {
             case windspeed_VALUE0:
@@ -253,7 +257,7 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             break;
         case EVENT_work_mod:
             currentDataPoint.valuework_mod = dataPointPtr->valuework_mod;
-            GIZWITS_LOG("Evt: EVENT_work_mod %d\n", currentDataPoint.valuework_mod);
+            GIZWITS_LOG("Evt: EVENT_work_mod %d\r\n", currentDataPoint.valuework_mod);
             switch (currentDataPoint.valuework_mod)
             {
             case work_mod_VALUE0:
@@ -272,8 +276,10 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             break;
 
         case EVENT_wemdu_kongzhi:
+            GIZWITS_LOG("1 Evt:EVENT_wemdu_kongzhi %d, %d\r\n", currentDataPoint.valuewemdu_kongzhi, dataPointPtr->valuewemdu_kongzhi);
             currentDataPoint.valuewemdu_kongzhi = dataPointPtr->valuewemdu_kongzhi;
-            GIZWITS_LOG("Evt:EVENT_wemdu_kongzhi %d\n", currentDataPoint.valuewemdu_kongzhi);
+            GIZWITS_LOG("2 Evt:EVENT_wemdu_kongzhi %d, %d\r\n", currentDataPoint.valuewemdu_kongzhi, dataPointPtr->valuewemdu_kongzhi);
+            printf("\r\n***********WorkMod Warm***********\r\n");
             printf("\r\n***********WorkMod Warm***********\r\n");
             my_eventprocess(EVENT_wemdu_kongzhi);
             // user handle
@@ -378,7 +384,7 @@ void userInit(void)
     currentDataPoint.valuewindspeed = 0;
     currentDataPoint.valuework_mod = 0;
     currentDataPoint.valuewendu = 0;
-    currentDataPoint.valuewemdu_kongzhi = 26;
+    currentDataPoint.valuewemdu_kongzhi = 20;
     currentDataPoint.valueshidu = 0;
 }
 
